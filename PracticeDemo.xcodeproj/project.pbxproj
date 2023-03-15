@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C77592C29C1B57800366C1F /* ChecklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77592B29C1B57800366C1F /* ChecklistViewController.m */; };
+		8C77592F29C1B61B00366C1F /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77592E29C1B61B00366C1F /* TestCell.m */; };
+		8C77593229C1D7B700366C1F /* ItemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77593129C1D7B700366C1F /* ItemDetailController.m */; };
 		8C7A0BE829C1A35D004E00CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0BE729C1A35D004E00CB /* AppDelegate.m */; };
-		8C7A0BEB29C1A35D004E00CB /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0BEA29C1A35D004E00CB /* SceneDelegate.m */; };
-		8C7A0BEE29C1A35D004E00CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0BED29C1A35D004E00CB /* ViewController.m */; };
+		8C7A0BEE29C1A35D004E00CB /* HomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0BED29C1A35D004E00CB /* HomepageViewController.m */; };
 		8C7A0BF129C1A35D004E00CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7A0BEF29C1A35D004E00CB /* Main.storyboard */; };
 		8C7A0BF329C1A35E004E00CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C7A0BF229C1A35E004E00CB /* Assets.xcassets */; };
 		8C7A0BF629C1A35E004E00CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7A0BF429C1A35E004E00CB /* LaunchScreen.storyboard */; };
@@ -17,6 +19,9 @@
 		8C7A0C0329C1A35E004E00CB /* PracticeDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C0229C1A35E004E00CB /* PracticeDemoTests.m */; };
 		8C7A0C0D29C1A35E004E00CB /* PracticeDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C0C29C1A35E004E00CB /* PracticeDemoUITests.m */; };
 		8C7A0C0F29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C0E29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m */; };
+		8C7A0C1D29C1A376004E00CB /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C1C29C1A376004E00CB /* DataModel.m */; };
+		8C7A0C2029C1A38D004E00CB /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */; };
+		8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C2229C1A3A1004E00CB /* Checklist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +42,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C77592A29C1B57800366C1F /* ChecklistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistViewController.h; sourceTree = "<group>"; };
+		8C77592B29C1B57800366C1F /* ChecklistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistViewController.m; sourceTree = "<group>"; };
+		8C77592D29C1B61B00366C1F /* TestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
+		8C77592E29C1B61B00366C1F /* TestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		8C77593029C1D7B700366C1F /* ItemDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailController.h; sourceTree = "<group>"; };
+		8C77593129C1D7B700366C1F /* ItemDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailController.m; sourceTree = "<group>"; };
 		8C7A0BE329C1A35D004E00CB /* PracticeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7A0BE629C1A35D004E00CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8C7A0BE729C1A35D004E00CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8C7A0BE929C1A35D004E00CB /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		8C7A0BEA29C1A35D004E00CB /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		8C7A0BEC29C1A35D004E00CB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8C7A0BED29C1A35D004E00CB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8C7A0BEC29C1A35D004E00CB /* HomepageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomepageViewController.h; sourceTree = "<group>"; };
+		8C7A0BED29C1A35D004E00CB /* HomepageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomepageViewController.m; sourceTree = "<group>"; };
 		8C7A0BF029C1A35D004E00CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C7A0BF229C1A35E004E00CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C7A0BF529C1A35E004E00CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +63,12 @@
 		8C7A0C0829C1A35E004E00CB /* PracticeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PracticeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7A0C0C29C1A35E004E00CB /* PracticeDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PracticeDemoUITests.m; sourceTree = "<group>"; };
 		8C7A0C0E29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PracticeDemoUITestsLaunchTests.m; sourceTree = "<group>"; };
+		8C7A0C1B29C1A376004E00CB /* DataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		8C7A0C1C29C1A376004E00CB /* DataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		8C7A0C1E29C1A38D004E00CB /* ChecklistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistItem.h; sourceTree = "<group>"; };
+		8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
+		8C7A0C2129C1A3A1004E00CB /* Checklist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checklist.h; sourceTree = "<group>"; };
+		8C7A0C2229C1A3A1004E00CB /* Checklist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Checklist.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,15 +121,25 @@
 			children = (
 				8C7A0BE629C1A35D004E00CB /* AppDelegate.h */,
 				8C7A0BE729C1A35D004E00CB /* AppDelegate.m */,
-				8C7A0BE929C1A35D004E00CB /* SceneDelegate.h */,
-				8C7A0BEA29C1A35D004E00CB /* SceneDelegate.m */,
-				8C7A0BEC29C1A35D004E00CB /* ViewController.h */,
-				8C7A0BED29C1A35D004E00CB /* ViewController.m */,
+				8C7A0BEC29C1A35D004E00CB /* HomepageViewController.h */,
+				8C7A0BED29C1A35D004E00CB /* HomepageViewController.m */,
 				8C7A0BEF29C1A35D004E00CB /* Main.storyboard */,
 				8C7A0BF229C1A35E004E00CB /* Assets.xcassets */,
 				8C7A0BF429C1A35E004E00CB /* LaunchScreen.storyboard */,
 				8C7A0BF729C1A35E004E00CB /* Info.plist */,
 				8C7A0BF829C1A35E004E00CB /* main.m */,
+				8C7A0C1B29C1A376004E00CB /* DataModel.h */,
+				8C7A0C1C29C1A376004E00CB /* DataModel.m */,
+				8C7A0C1E29C1A38D004E00CB /* ChecklistItem.h */,
+				8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */,
+				8C7A0C2129C1A3A1004E00CB /* Checklist.h */,
+				8C7A0C2229C1A3A1004E00CB /* Checklist.m */,
+				8C77592D29C1B61B00366C1F /* TestCell.h */,
+				8C77592E29C1B61B00366C1F /* TestCell.m */,
+				8C77592A29C1B57800366C1F /* ChecklistViewController.h */,
+				8C77592B29C1B57800366C1F /* ChecklistViewController.m */,
+				8C77593029C1D7B700366C1F /* ItemDetailController.h */,
+				8C77593129C1D7B700366C1F /* ItemDetailController.m */,
 			);
 			path = PracticeDemo;
 			sourceTree = "<group>";
@@ -266,10 +291,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C7A0BEE29C1A35D004E00CB /* ViewController.m in Sources */,
+				8C7A0BEE29C1A35D004E00CB /* HomepageViewController.m in Sources */,
+				8C7A0C1D29C1A376004E00CB /* DataModel.m in Sources */,
+				8C77592C29C1B57800366C1F /* ChecklistViewController.m in Sources */,
 				8C7A0BE829C1A35D004E00CB /* AppDelegate.m in Sources */,
 				8C7A0BF929C1A35E004E00CB /* main.m in Sources */,
-				8C7A0BEB29C1A35D004E00CB /* SceneDelegate.m in Sources */,
+				8C77592F29C1B61B00366C1F /* TestCell.m in Sources */,
+				8C7A0C2029C1A38D004E00CB /* ChecklistItem.m in Sources */,
+				8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */,
+				8C77593229C1D7B700366C1F /* ItemDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
