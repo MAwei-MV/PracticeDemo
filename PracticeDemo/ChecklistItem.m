@@ -2,7 +2,7 @@
 //  ChecklistItem.m
 //  PracticeDemo
 //
-//  Created by 周婷玉 on 2023/3/15.
+//  Created by mawei on 2023/3/15.
 //
 
 #import "ChecklistItem.h"
@@ -10,12 +10,14 @@
 @implementation ChecklistItem
 
 - (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
-    [aCoder encodeObject:self.text forKey:@"Text"];
+    [aCoder encodeObject:self.keyText forKey:@"keyText"];
+    [aCoder encodeObject:self.valueText forKey:@"valueText"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)aDecoder {
     if ((self = [super init])) {
-        self.text = [aDecoder decodeObjectForKey: @"Text"];
+        self.keyText = [aDecoder decodeObjectForKey: @"keyText"];
+        self.valueText = [aDecoder decodeObjectForKey:@"valueText"];
     }
     return self;
 }

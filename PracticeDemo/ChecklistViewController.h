@@ -10,6 +10,6 @@
 @class Checklist;
 @interface ChecklistViewController : UITableViewController
 
-@property (nonatomic, strong) Checklist *checklist;
+@property (nonatomic, strong) NSMutableArray *checklists;
 
 @end

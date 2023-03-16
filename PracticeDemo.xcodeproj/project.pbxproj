@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05B95AEFCF091C7DAAE32922 /* libPods-PracticeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF292A069C241D5333AB656 /* libPods-PracticeDemo.a */; };
 		8C77592C29C1B57800366C1F /* ChecklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77592B29C1B57800366C1F /* ChecklistViewController.m */; };
-		8C77592F29C1B61B00366C1F /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77592E29C1B61B00366C1F /* TestCell.m */; };
+		8C77592F29C1B61B00366C1F /* ChecklistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77592E29C1B61B00366C1F /* ChecklistCell.m */; };
 		8C77593229C1D7B700366C1F /* ItemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77593129C1D7B700366C1F /* ItemDetailController.m */; };
+		8C77593529C2F6E600366C1F /* Catalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77593429C2F6E600366C1F /* Catalog.m */; };
+		8C77593829C33DEB00366C1F /* ChecklistItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77593729C33DEB00366C1F /* ChecklistItemCell.m */; };
 		8C7A0BE829C1A35D004E00CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0BE729C1A35D004E00CB /* AppDelegate.m */; };
 		8C7A0BEE29C1A35D004E00CB /* HomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0BED29C1A35D004E00CB /* HomepageViewController.m */; };
 		8C7A0BF129C1A35D004E00CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7A0BEF29C1A35D004E00CB /* Main.storyboard */; };
@@ -42,12 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DF292A069C241D5333AB656 /* libPods-PracticeDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PracticeDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C77592A29C1B57800366C1F /* ChecklistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistViewController.h; sourceTree = "<group>"; };
 		8C77592B29C1B57800366C1F /* ChecklistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistViewController.m; sourceTree = "<group>"; };
-		8C77592D29C1B61B00366C1F /* TestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
-		8C77592E29C1B61B00366C1F /* TestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		8C77592D29C1B61B00366C1F /* ChecklistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistCell.h; sourceTree = "<group>"; };
+		8C77592E29C1B61B00366C1F /* ChecklistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistCell.m; sourceTree = "<group>"; };
 		8C77593029C1D7B700366C1F /* ItemDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailController.h; sourceTree = "<group>"; };
 		8C77593129C1D7B700366C1F /* ItemDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailController.m; sourceTree = "<group>"; };
+		8C77593329C2F6E600366C1F /* Catalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Catalog.h; sourceTree = "<group>"; };
+		8C77593429C2F6E600366C1F /* Catalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Catalog.m; sourceTree = "<group>"; };
+		8C77593629C33DEB00366C1F /* ChecklistItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistItemCell.h; sourceTree = "<group>"; };
+		8C77593729C33DEB00366C1F /* ChecklistItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistItemCell.m; sourceTree = "<group>"; };
 		8C7A0BE329C1A35D004E00CB /* PracticeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7A0BE629C1A35D004E00CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8C7A0BE729C1A35D004E00CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +77,8 @@
 		8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
 		8C7A0C2129C1A3A1004E00CB /* Checklist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checklist.h; sourceTree = "<group>"; };
 		8C7A0C2229C1A3A1004E00CB /* Checklist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Checklist.m; sourceTree = "<group>"; };
+		B28CB7B7D343707C4F3F88A0 /* Pods-PracticeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeDemo.release.xcconfig"; path = "Target Support Files/Pods-PracticeDemo/Pods-PracticeDemo.release.xcconfig"; sourceTree = "<group>"; };
+		D045FEFF2DAEC7982277BE24 /* Pods-PracticeDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeDemo.debug.xcconfig"; path = "Target Support Files/Pods-PracticeDemo/Pods-PracticeDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B95AEFCF091C7DAAE32922 /* libPods-PracticeDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +114,8 @@
 				8C7A0C0129C1A35E004E00CB /* PracticeDemoTests */,
 				8C7A0C0B29C1A35E004E00CB /* PracticeDemoUITests */,
 				8C7A0BE429C1A35D004E00CB /* Products */,
+				9B8BDD5BCF0787D4554F1366 /* Pods */,
+				D1994F4D6B46A3C30A239B2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,12 +147,16 @@
 				8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */,
 				8C7A0C2129C1A3A1004E00CB /* Checklist.h */,
 				8C7A0C2229C1A3A1004E00CB /* Checklist.m */,
-				8C77592D29C1B61B00366C1F /* TestCell.h */,
-				8C77592E29C1B61B00366C1F /* TestCell.m */,
+				8C77592D29C1B61B00366C1F /* ChecklistCell.h */,
+				8C77592E29C1B61B00366C1F /* ChecklistCell.m */,
 				8C77592A29C1B57800366C1F /* ChecklistViewController.h */,
 				8C77592B29C1B57800366C1F /* ChecklistViewController.m */,
 				8C77593029C1D7B700366C1F /* ItemDetailController.h */,
 				8C77593129C1D7B700366C1F /* ItemDetailController.m */,
+				8C77593329C2F6E600366C1F /* Catalog.h */,
+				8C77593429C2F6E600366C1F /* Catalog.m */,
+				8C77593629C33DEB00366C1F /* ChecklistItemCell.h */,
+				8C77593729C33DEB00366C1F /* ChecklistItemCell.m */,
 			);
 			path = PracticeDemo;
 			sourceTree = "<group>";
@@ -161,6 +178,23 @@
 			path = PracticeDemoUITests;
 			sourceTree = "<group>";
 		};
+		9B8BDD5BCF0787D4554F1366 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D045FEFF2DAEC7982277BE24 /* Pods-PracticeDemo.debug.xcconfig */,
+				B28CB7B7D343707C4F3F88A0 /* Pods-PracticeDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D1994F4D6B46A3C30A239B2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DF292A069C241D5333AB656 /* libPods-PracticeDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +202,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C7A0C1229C1A35E004E00CB /* Build configuration list for PBXNativeTarget "PracticeDemo" */;
 			buildPhases = (
+				623DC526655D89B93A04BC91 /* [CP] Check Pods Manifest.lock */,
 				8C7A0BDF29C1A35D004E00CB /* Sources */,
 				8C7A0BE029C1A35D004E00CB /* Frameworks */,
 				8C7A0BE129C1A35D004E00CB /* Resources */,
@@ -286,6 +321,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		623DC526655D89B93A04BC91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PracticeDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8C7A0BDF29C1A35D004E00CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -293,10 +353,12 @@
 			files = (
 				8C7A0BEE29C1A35D004E00CB /* HomepageViewController.m in Sources */,
 				8C7A0C1D29C1A376004E00CB /* DataModel.m in Sources */,
+				8C77593829C33DEB00366C1F /* ChecklistItemCell.m in Sources */,
 				8C77592C29C1B57800366C1F /* ChecklistViewController.m in Sources */,
+				8C77593529C2F6E600366C1F /* Catalog.m in Sources */,
 				8C7A0BE829C1A35D004E00CB /* AppDelegate.m in Sources */,
 				8C7A0BF929C1A35E004E00CB /* main.m in Sources */,
-				8C77592F29C1B61B00366C1F /* TestCell.m in Sources */,
+				8C77592F29C1B61B00366C1F /* ChecklistCell.m in Sources */,
 				8C7A0C2029C1A38D004E00CB /* ChecklistItem.m in Sources */,
 				8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */,
 				8C77593229C1D7B700366C1F /* ItemDetailController.m in Sources */,
@@ -467,6 +529,7 @@
 		};
 		8C7A0C1329C1A35E004E00CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D045FEFF2DAEC7982277BE24 /* Pods-PracticeDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -493,6 +556,7 @@
 		};
 		8C7A0C1429C1A35E004E00CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B28CB7B7D343707C4F3F88A0 /* Pods-PracticeDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

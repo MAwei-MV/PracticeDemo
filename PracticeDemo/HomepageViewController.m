@@ -9,6 +9,7 @@
 #import "ChecklistViewController.h"
 #import "DataModel.h"
 #import "Checklist.h"
+#import "Catalog.h"
 
 @implementation HomepageViewController
 
@@ -23,7 +24,6 @@
     int count = 0;
     return 3;
 }
-
 #pragma mark
 #pragma mark Table Data Source Methods
 
@@ -37,9 +37,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:FirstLevelCell];
     }
-    Checklist *list = self.dataModel.lists[indexPath.row];
-    cell.textLabel.text = list.caption;
-    cell.detailTextLabel.text = (@"subTitle of Title");
+    Catalog *catalog = self.dataModel.lists[indexPath.row];
+    cell.textLabel.text = catalog.name;
+    cell.detailTextLabel.text = ([@(catalog.catalist.count).stringValue stringByAppendingString:@"项"]);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //    //configure the cell
 //    NSUInteger row = [indexPath row];
@@ -53,7 +53,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     ChecklistViewController *nextController = [[ChecklistViewController alloc] init];
-    nextController.checklist = self.dataModel.lists[row];
+    nextController.checklists = [self.dataModel.lists[row] catalist];
     [self.navigationController pushViewController:nextController animated:YES];
 }
 

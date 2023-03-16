@@ -6,12 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Catalog.h"
 
 @interface Checklist :NSObject <NSCoding>
 
-@property (nullable, nonatomic)Checklist *subCategory;
+@property (nonatomic, strong, nonnull) NSString *titleName;
+@property (nullable, nonatomic, weak)Catalog *subCategory;
 @property (nonatomic, nullable)NSString *caption;
-@property (nonatomic, assign, nullable)NSDictionary *checkItem;
+@property (nonatomic, nullable)NSNumber *checkItem;
 @property (nonatomic, nullable)NSMutableArray *items;
 @property (nonatomic, nullable)NSNumber *num;
 

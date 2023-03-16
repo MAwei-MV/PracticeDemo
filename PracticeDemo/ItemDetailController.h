@@ -7,9 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ItemDetailController : UIViewController
+@interface ItemDetailController : UITableViewController
 
-@property (strong, nonatomic) UILabel *label;
-@property (strong, nonatomic) NSString *text;
+@property (strong, nonatomic) NSMutableArray *items;
 
 @end

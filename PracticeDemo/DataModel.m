@@ -8,12 +8,13 @@
 #import "DataModel.h"
 #import "Checklist.h"
 #import "ChecklistItem.h"
+#import "Catalog.h"
 
 @implementation DataModel
 
 - (id)init {
     if ((self = [super init])) {
-        [self loadChecklists];
+        [self loadAllData];
         [self registerDefaults];
     }
     return self;
@@ -40,34 +41,42 @@
 }
 
 //取
-- (void)loadChecklists {
+- (void)loadAllData {
     self.lists = [[NSMutableArray alloc] initWithCapacity:20];
+    Catalog *cata;
     Checklist *list;
+    cata = [[Catalog alloc] init];
+    cata.catalist = [[NSMutableArray alloc] initWithCapacity:20];
+    cata.name = @"Function1";
     list = [[Checklist alloc] init];
-    list.caption = @"Function1";
-    Checklist *subList = [[Checklist alloc] init];
-    subList.caption = @"subCategory of First Function1";
-    list.subCategory = subList;
-    [_lists addObject:list];
+    list.titleName = @"Switch1";
+    list.checkItem = @1;
+    [cata.catalist addObject:list];
     
     list = [[Checklist alloc] init];
-    list.caption = @"Function2";
-    list.num = @1002;
-    [_lists addObject:list];
+    list.titleName = @"String";
+    list.caption = @"aaa";
+    [cata.catalist addObject:list];
     
     list = [[Checklist alloc] init];
-    list.caption = @"Function3";
-    NSDictionary *ns = [[NSDictionary alloc] initWithObjectsAndKeys:@"YES",@"Switch1",@"NO",@"Switch", nil];
-    [_lists addObject:list];
+    list.items = [[NSMutableArray alloc] init];
+    list.titleName = @"DefaultList";
+    ChecklistItem *item = [[ChecklistItem alloc] init];
+    item.keyText = @"item 1";
+    item.valueText = @"B";
+    [list.items addObject:item];
+    [cata.catalist addObject:list];
     
+    Catalog *subCata = [[Catalog alloc] init];
+    subCata.name = @"SubFunction";
+    subCata.catalist = [[NSMutableArray alloc] initWithCapacity:20];
     list = [[Checklist alloc] init];
-    list.caption = @"Function4";
-    ChecklistItem *listItem = [[ChecklistItem alloc] init];
-    listItem.text = @"I am the Item";
-    list.items = [[NSMutableArray alloc] initWithCapacity:5];
-    [list.items addObject:listItem];
-    [_lists addObject:list];
+    list.titleName = @"item For subCategory";
+    list.caption = @"bbbbb";
+    [subCata.catalist addObject:list];
+    [cata.catalist addObject:subCata];
     
+    [_lists addObject:cata];
 //    NSString *path = [self dataFilePath];
 //    NSLog(@"MV make a tag for dataFilePath: %@:", path);
 //    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {

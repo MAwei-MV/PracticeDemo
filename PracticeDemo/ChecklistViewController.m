@@ -6,6 +6,9 @@
 //
 
 #import "ChecklistViewController.h"
+#import "ChecklistCell.h"
+#import "Checklist.h"
+#import "ItemDetailController.h"
 
 @interface ChecklistViewController ()
 
@@ -15,20 +18,64 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView registerClass:ChecklistCell.self forCellReuseIdentifier:cellIdentifier];
 }
+
+#pragma mark - Table view cell style
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [self.checklists count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistCell"];
+    ChecklistCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChecklistCell"];
+        cell = [[ChecklistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = @"23123123";
-    return cell;    
+    //先判断是否为二级分类
+    if ([self.checklists[indexPath.row] isKindOfClass:Catalog.class]) {
+        Catalog *subCata = self.checklists[indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = subCata.name;
+    } else {
+        Checklist *list = self.checklists[indexPath.row];
+        if (list.checkItem != nil) {
+            [cell setupSwitch:([list.checkItem  isEqual: @1]) withTitle:list.titleName];
+        } else if (list.caption != nil) {
+            [cell setupLabels:list.caption withTitle:list.titleName];
+        } else if (list.num != nil) {
+            NSNumberFormatter *tempNum = [[NSNumberFormatter alloc] init];
+            NSString *resStr = [tempNum stringFromNumber:list.num];
+            [cell setupLabels:resStr withTitle:list.titleName];
+        } else if (list.items != nil) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.textLabel.text = list.titleName;
+        }
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //如果是二级分类
+    if ([self.checklists[indexPath.row] isKindOfClass:Catalog.class]) {
+        Catalog *subCata = self.checklists[indexPath.row];
+        ChecklistViewController *nextController = [[ChecklistViewController alloc] init];
+        nextController.checklists = subCata.catalist;
+        [self.navigationController pushViewController:nextController animated:YES];
+    } else{
+        Checklist *list = self.checklists[indexPath.row];
+        if (list.items != nil) {
+            ItemDetailController *nextController = [[ItemDetailController alloc] init];
+            nextController.items = list.items;
+            [self.navigationController pushViewController:nextController animated:YES];
+        }
+    }
 }
 
 @end
