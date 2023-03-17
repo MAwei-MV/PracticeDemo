@@ -23,7 +23,6 @@
 		8C7A0C0D29C1A35E004E00CB /* PracticeDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C0C29C1A35E004E00CB /* PracticeDemoUITests.m */; };
 		8C7A0C0F29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C0E29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m */; };
 		8C7A0C1D29C1A376004E00CB /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C1C29C1A376004E00CB /* DataModel.m */; };
-		8C7A0C2029C1A38D004E00CB /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */; };
 		8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C2229C1A3A1004E00CB /* Checklist.m */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +72,6 @@
 		8C7A0C0E29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PracticeDemoUITestsLaunchTests.m; sourceTree = "<group>"; };
 		8C7A0C1B29C1A376004E00CB /* DataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		8C7A0C1C29C1A376004E00CB /* DataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
-		8C7A0C1E29C1A38D004E00CB /* ChecklistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistItem.h; sourceTree = "<group>"; };
-		8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
 		8C7A0C2129C1A3A1004E00CB /* Checklist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checklist.h; sourceTree = "<group>"; };
 		8C7A0C2229C1A3A1004E00CB /* Checklist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Checklist.m; sourceTree = "<group>"; };
 		B28CB7B7D343707C4F3F88A0 /* Pods-PracticeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeDemo.release.xcconfig"; path = "Target Support Files/Pods-PracticeDemo/Pods-PracticeDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,8 +140,6 @@
 				8C7A0BF829C1A35E004E00CB /* main.m */,
 				8C7A0C1B29C1A376004E00CB /* DataModel.h */,
 				8C7A0C1C29C1A376004E00CB /* DataModel.m */,
-				8C7A0C1E29C1A38D004E00CB /* ChecklistItem.h */,
-				8C7A0C1F29C1A38D004E00CB /* ChecklistItem.m */,
 				8C7A0C2129C1A3A1004E00CB /* Checklist.h */,
 				8C7A0C2229C1A3A1004E00CB /* Checklist.m */,
 				8C77592D29C1B61B00366C1F /* ChecklistCell.h */,
@@ -359,7 +354,6 @@
 				8C7A0BE829C1A35D004E00CB /* AppDelegate.m in Sources */,
 				8C7A0BF929C1A35E004E00CB /* main.m in Sources */,
 				8C77592F29C1B61B00366C1F /* ChecklistCell.m in Sources */,
-				8C7A0C2029C1A38D004E00CB /* ChecklistItem.m in Sources */,
 				8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */,
 				8C77593229C1D7B700366C1F /* ItemDetailController.m in Sources */,
 			);

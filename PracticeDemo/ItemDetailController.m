@@ -7,7 +7,6 @@
 
 #import "ItemDetailController.h"
 #import "ChecklistItemCell.h"
-#import "ChecklistItem.h"
 
 @implementation ItemDetailController
 
@@ -29,8 +28,9 @@
     if (detailCell == nil) {
         detailCell = [[ChecklistItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailCellIdentifier];
     }
-    ChecklistItem *item = self.items[indexPath.row];
-    [detailCell setupLabel:item.keyText withValue:item.valueText];    
+    NSString *item = self.items[indexPath.row];
+    NSString *keyValue = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+    [detailCell setupLabel:keyValue withValue: item];
     detailCell.accessoryType = UITableViewCellAccessoryDetailButton;
     return  detailCell;
 }

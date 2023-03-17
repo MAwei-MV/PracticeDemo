@@ -7,10 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Catalog : NSObject
+@class Checklist;
+@interface Catalog : NSObject <NSCoding>
 
 @property (nonatomic, strong)NSString *name;
 @property (nonatomic, strong) NSMutableArray *catalist;
-@property (nonatomic, strong)Catalog* subCategory;
 
 @end

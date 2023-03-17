@@ -19,11 +19,7 @@
     DataModel *dataSource = [[DataModel alloc] init];
     self.dataModel = dataSource;
 }
-//TODO: update caculate the count in controller
-- (int) getCountOfContent {
-    int count = 0;
-    return 3;
-}
+
 #pragma mark
 #pragma mark Table Data Source Methods
 

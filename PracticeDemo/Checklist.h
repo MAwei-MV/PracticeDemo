@@ -11,7 +11,7 @@
 @interface Checklist :NSObject <NSCoding>
 
 @property (nonatomic, strong, nonnull) NSString *titleName;
-@property (nullable, nonatomic, weak)Catalog *subCategory;
+@property (nullable, nonatomic)Catalog *subCategory;
 @property (nonatomic, nullable)NSString *caption;
 @property (nonatomic, nullable)NSNumber *checkItem;
 @property (nonatomic, nullable)NSMutableArray *items;

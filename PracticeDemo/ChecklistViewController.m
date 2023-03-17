@@ -38,43 +38,39 @@
     if (cell == nil) {
         cell = [[ChecklistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    Checklist *list = self.checklists[indexPath.row];
     //先判断是否为二级分类
-    if ([self.checklists[indexPath.row] isKindOfClass:Catalog.class]) {
-        Catalog *subCata = self.checklists[indexPath.row];
+    if (list.subCategory != nil) {
+        Catalog *subCata = list.subCategory;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = subCata.name;
-    } else {
-        Checklist *list = self.checklists[indexPath.row];
-        if (list.checkItem != nil) {
+    } else if (list.checkItem != nil) {
             [cell setupSwitch:([list.checkItem  isEqual: @1]) withTitle:list.titleName];
-        } else if (list.caption != nil) {
+    } else if (list.caption != nil) {
             [cell setupLabels:list.caption withTitle:list.titleName];
-        } else if (list.num != nil) {
+    } else if (list.num != nil) {
             NSNumberFormatter *tempNum = [[NSNumberFormatter alloc] init];
             NSString *resStr = [tempNum stringFromNumber:list.num];
             [cell setupLabels:resStr withTitle:list.titleName];
-        } else if (list.items != nil) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else if (list.items != nil) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = list.titleName;
-        }
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //如果是二级分类
-    if ([self.checklists[indexPath.row] isKindOfClass:Catalog.class]) {
-        Catalog *subCata = self.checklists[indexPath.row];
+    Checklist *list =self.checklists[indexPath.row];
+    if (list.subCategory != nil) {
+        Catalog *subCata = list.subCategory;
         ChecklistViewController *nextController = [[ChecklistViewController alloc] init];
         nextController.checklists = subCata.catalist;
         [self.navigationController pushViewController:nextController animated:YES];
-    } else{
-        Checklist *list = self.checklists[indexPath.row];
-        if (list.items != nil) {
+    } else if (list.items != nil) {
             ItemDetailController *nextController = [[ItemDetailController alloc] init];
             nextController.items = list.items;
             [self.navigationController pushViewController:nextController animated:YES];
-        }
     }
 }
 

@@ -9,4 +9,17 @@
 
 @implementation Catalog
 
+- (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
+    
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.name = [aDecoder decodeObjectForKey:@"Name"];
+        self.catalist = [aDecoder decodeObjectForKey:@"Catalist"];
+    }
+    return self;
+
+}
+
 @end

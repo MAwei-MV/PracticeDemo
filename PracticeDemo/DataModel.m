@@ -7,7 +7,6 @@
 
 #import "DataModel.h"
 #import "Checklist.h"
-#import "ChecklistItem.h"
 #import "Catalog.h"
 
 @implementation DataModel
@@ -21,13 +20,14 @@
 }
 
 - (NSString *)documentsDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths firstObject];
-    return documentsDirectory;
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSString *documentsDirectory = [paths firstObject];
+    //return documentsDirectory;
+    return @"/Users/tingyu/Desktop";
 }
 
 - (NSString *)dataFilePath {
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"PropertyList.plist"];
 }
 
 //封
@@ -43,50 +43,49 @@
 //取
 - (void)loadAllData {
     self.lists = [[NSMutableArray alloc] initWithCapacity:20];
-    Catalog *cata;
-    Checklist *list;
-    cata = [[Catalog alloc] init];
-    cata.catalist = [[NSMutableArray alloc] initWithCapacity:20];
-    cata.name = @"Function1";
-    list = [[Checklist alloc] init];
-    list.titleName = @"Switch1";
-    list.checkItem = @1;
-    [cata.catalist addObject:list];
-    
-    list = [[Checklist alloc] init];
-    list.titleName = @"String";
-    list.caption = @"aaa";
-    [cata.catalist addObject:list];
-    
-    list = [[Checklist alloc] init];
-    list.items = [[NSMutableArray alloc] init];
-    list.titleName = @"DefaultList";
-    ChecklistItem *item = [[ChecklistItem alloc] init];
-    item.keyText = @"item 1";
-    item.valueText = @"B";
-    [list.items addObject:item];
-    [cata.catalist addObject:list];
-    
-    Catalog *subCata = [[Catalog alloc] init];
-    subCata.name = @"SubFunction";
-    subCata.catalist = [[NSMutableArray alloc] initWithCapacity:20];
-    list = [[Checklist alloc] init];
-    list.titleName = @"item For subCategory";
-    list.caption = @"bbbbb";
-    [subCata.catalist addObject:list];
-    [cata.catalist addObject:subCata];
-    
-    [_lists addObject:cata];
-//    NSString *path = [self dataFilePath];
-//    NSLog(@"MV make a tag for dataFilePath: %@:", path);
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-//        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-//        self.lists = [unarchiver decodeObjectForKey:@"Checklists"];
-//        [unarchiver finishDecoding];
-//    } else {
-//        self.lists = [[NSMutableArray alloc] initWithCapacity:20];
-//    }
+    NSString *path = [self dataFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        self.lists = [[NSMutableArray alloc] init];
+        NSDictionary *catalogs = [NSDictionary dictionaryWithContentsOfFile:path];
+        for (NSString *keyName in catalogs) {
+            Catalog *catalog = [self recuLoadData:catalogs[keyName]];
+            catalog.name = keyName;
+            [self.lists addObject:catalog];
+        }
+    } else {
+        self.lists = [[NSMutableArray alloc] initWithCapacity:20];
+    }
+}
+//递归加载
+- (Catalog *)recuLoadData: (NSDictionary *) dic{
+    Catalog *catalog = [[Catalog alloc] init];
+    NSMutableArray *lists = [[NSMutableArray alloc] init];
+    for (NSString *keyName in dic) {
+        Checklist *list = [[Checklist alloc] init];
+        list.titleName = keyName;
+        //二级分类时
+        if ([dic[keyName] isKindOfClass:NSDictionary.class]) {
+            Catalog *subCata = [self recuLoadData:dic[keyName]];
+            subCata.name = keyName;
+            list.subCategory = subCata;
+            NSLog(@"312312");
+        } else if ([dic[keyName] isKindOfClass:NSArray.class]) {
+                   NSMutableArray *items = dic[keyName];
+                   list.items = items;
+        } else if ([dic[keyName] isKindOfClass:NSString.class]) {
+                list.caption = dic[keyName];
+        } else if ([dic[keyName] isKindOfClass:NSNumber.class]){
+            NSNumber *number = dic[keyName];
+            if ([number isEqual: @NO] || [number isEqual: @YES]) {
+                list.checkItem = number;
+            } else {
+                list.num = number;
+            }
+        }
+        [lists addObject:list];
+    }
+    catalog.catalist = lists;
+    return catalog;
 }
 
 - (void)registerDefaults {
