@@ -8,7 +8,8 @@
 #import "ChecklistViewController.h"
 #import "ChecklistCell.h"
 #import "Checklist.h"
-#import "ItemDetailController.h"
+#import "CheckItemController.h"
+#import "ItemDetailViewController.h"
 
 @interface ChecklistViewController ()
 
@@ -34,12 +35,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChecklistCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    ChecklistCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell == nil) {
         cell = [[ChecklistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     Checklist *list = self.checklists[indexPath.row];
-    //先判断是否为二级分类
+    //判断是否为二级分类
     if (list.subCategory != nil) {
         Catalog *subCata = list.subCategory;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -68,10 +69,34 @@
         nextController.checklists = subCata.catalist;
         [self.navigationController pushViewController:nextController animated:YES];
     } else if (list.items != nil) {
-            ItemDetailController *nextController = [[ItemDetailController alloc] init];
+            CheckItemController *nextController = [[CheckItemController alloc] init];
             nextController.items = list.items;
             [self.navigationController pushViewController:nextController animated:YES];
+    } else if (list.caption != nil) {
+        ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
+        nextController.checklist = list;
+        nextController.title = @"Edit Item";
+        nextController.delegate = self;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
+        [self presentViewController:nav animated:YES completion:nil];
+    } else if (list.num != nil) {
+        ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
+        nextController.checklist = list;
+        nextController.title = @"Edit Item";
+        nextController.delegate = self;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
+        [self presentViewController:nav animated:YES completion:nil];
     }
+}
+
+#pragma mark - ItemDetailViewControllerDelegate
+-(void)detailViewControllerDidCancel:(ItemDetailViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)listDetailViewController:(ItemDetailViewController *)controller didFinishEditingList:(NSString *)text {
+    [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

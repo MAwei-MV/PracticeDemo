@@ -18,6 +18,7 @@
     self.title = @"First Level";
     DataModel *dataSource = [[DataModel alloc] init];
     self.dataModel = dataSource;
+    [self.dataModel sortCatalog];
 }
 
 #pragma mark

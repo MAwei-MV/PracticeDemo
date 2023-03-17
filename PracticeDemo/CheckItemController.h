@@ -6,8 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemDetailViewController.h"
 
-@interface ItemDetailController : UITableViewController
+@interface CheckItemController : UITableViewController <ItemDetailViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *items;
 

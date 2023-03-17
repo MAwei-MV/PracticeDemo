@@ -41,6 +41,7 @@
 }
 
 //取
+//序列化方案
 - (void)loadAllData {
     self.lists = [[NSMutableArray alloc] initWithCapacity:20];
     NSString *path = [self dataFilePath];
@@ -68,7 +69,6 @@
             Catalog *subCata = [self recuLoadData:dic[keyName]];
             subCata.name = keyName;
             list.subCategory = subCata;
-            NSLog(@"312312");
         } else if ([dic[keyName] isKindOfClass:NSArray.class]) {
                    NSMutableArray *items = dic[keyName];
                    list.items = items;
@@ -100,6 +100,11 @@
 
 - (void)setIndexOfSelectedChecklist: (NSInteger)index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"ChecklistIndex"];
+}
+
+
+- (void)sortCatalog {
+    [self.lists sortUsingSelector:@selector(compare:)];
 }
 
 @end

@@ -19,7 +19,11 @@
         self.catalist = [aDecoder decodeObjectForKey:@"Catalist"];
     }
     return self;
+}
 
+- (NSComparisonResult)compare: (Catalog *)otherCatalog {
+    //localizedStandarCompare对String类型数据进行排序
+    return [self.name localizedStandardCompare:otherCatalog.name];
 }
 
 @end
