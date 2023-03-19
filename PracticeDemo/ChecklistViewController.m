@@ -9,7 +9,8 @@
 #import "ChecklistCell.h"
 #import "Checklist.h"
 #import "CheckItemController.h"
-#import "ItemDetailViewController.h"
+#import "DetailViewController.h"
+#import "ChecklistItem.h"
 
 @interface ChecklistViewController ()
 
@@ -69,18 +70,27 @@
         nextController.checklists = subCata.catalist;
         [self.navigationController pushViewController:nextController animated:YES];
     } else if (list.items != nil) {
-            CheckItemController *nextController = [[CheckItemController alloc] init];
-            nextController.items = list.items;
-            [self.navigationController pushViewController:nextController animated:YES];
+        CheckItemController *nextController = [[CheckItemController alloc] init];
+        NSMutableArray *valueTexts = list.items;
+        int index = 0;
+        NSMutableArray *checkItems = [[NSMutableArray alloc] init];
+        for (NSString *valueText in valueTexts) {
+            ChecklistItem *item = [[ChecklistItem alloc] init];
+            item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)index]];
+            item.valueText = valueText;
+            [checkItems addObject:item];
+        }
+        nextController.items = checkItems;
+        [self.navigationController pushViewController:nextController animated:YES];
     } else if (list.caption != nil) {
-        ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
+        DetailViewController *nextController = [[DetailViewController alloc] init];
         nextController.checklist = list;
         nextController.title = @"Edit Item";
         nextController.delegate = self;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
         [self presentViewController:nav animated:YES completion:nil];
     } else if (list.num != nil) {
-        ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
+        DetailViewController *nextController = [[DetailViewController alloc] init];
         nextController.checklist = list;
         nextController.title = @"Edit Item";
         nextController.delegate = self;
@@ -90,11 +100,11 @@
 }
 
 #pragma mark - ItemDetailViewControllerDelegate
--(void)detailViewControllerDidCancel:(ItemDetailViewController *)controller {
+-(void)detailViewControllerDidCancel:(DetailViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)listDetailViewController:(ItemDetailViewController *)controller didFinishEditingList:(NSString *)text {
+-(void)listDetailViewController:(DetailViewController *)controller didFinishEditingList:(NSString *)text {
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

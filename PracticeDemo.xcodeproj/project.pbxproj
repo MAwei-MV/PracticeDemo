@@ -24,7 +24,7 @@
 		8C7A0C0F29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C0E29C1A35E004E00CB /* PracticeDemoUITestsLaunchTests.m */; };
 		8C7A0C1D29C1A376004E00CB /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C1C29C1A376004E00CB /* DataModel.m */; };
 		8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A0C2229C1A3A1004E00CB /* Checklist.m */; };
-		8CBBDBD429C43B59008FDCB1 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBD329C43B59008FDCB1 /* ItemDetailViewController.m */; };
+		8CBBDBD429C43B59008FDCB1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBD329C43B59008FDCB1 /* DetailViewController.m */; };
 		8CBBDBD729C46D33008FDCB1 /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBD629C46D33008FDCB1 /* ChecklistItem.m */; };
 /* End PBXBuildFile section */
 
@@ -76,8 +76,8 @@
 		8C7A0C1C29C1A376004E00CB /* DataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		8C7A0C2129C1A3A1004E00CB /* Checklist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checklist.h; sourceTree = "<group>"; };
 		8C7A0C2229C1A3A1004E00CB /* Checklist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Checklist.m; sourceTree = "<group>"; };
-		8CBBDBD229C43B59008FDCB1 /* ItemDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
-		8CBBDBD329C43B59008FDCB1 /* ItemDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		8CBBDBD229C43B59008FDCB1 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		8CBBDBD329C43B59008FDCB1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		8CBBDBD529C46D33008FDCB1 /* ChecklistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistItem.h; sourceTree = "<group>"; };
 		8CBBDBD629C46D33008FDCB1 /* ChecklistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
 		B28CB7B7D343707C4F3F88A0 /* Pods-PracticeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeDemo.release.xcconfig"; path = "Target Support Files/Pods-PracticeDemo/Pods-PracticeDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 				8C77593429C2F6E600366C1F /* Catalog.m */,
 				8C77593629C33DEB00366C1F /* ChecklistItemCell.h */,
 				8C77593729C33DEB00366C1F /* ChecklistItemCell.m */,
-				8CBBDBD229C43B59008FDCB1 /* ItemDetailViewController.h */,
-				8CBBDBD329C43B59008FDCB1 /* ItemDetailViewController.m */,
+				8CBBDBD229C43B59008FDCB1 /* DetailViewController.h */,
+				8CBBDBD329C43B59008FDCB1 /* DetailViewController.m */,
 				8CBBDBD529C46D33008FDCB1 /* ChecklistItem.h */,
 				8CBBDBD629C46D33008FDCB1 /* ChecklistItem.m */,
 			);
@@ -358,7 +358,7 @@
 			files = (
 				8C7A0BEE29C1A35D004E00CB /* HomepageViewController.m in Sources */,
 				8C7A0C1D29C1A376004E00CB /* DataModel.m in Sources */,
-				8CBBDBD429C43B59008FDCB1 /* ItemDetailViewController.m in Sources */,
+				8CBBDBD429C43B59008FDCB1 /* DetailViewController.m in Sources */,
 				8C77593829C33DEB00366C1F /* ChecklistItemCell.m in Sources */,
 				8C77592C29C1B57800366C1F /* ChecklistViewController.m in Sources */,
 				8C77593529C2F6E600366C1F /* Catalog.m in Sources */,

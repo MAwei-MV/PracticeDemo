@@ -7,6 +7,7 @@
 
 #import "ChecklistItemCell.h"
 #import "Masonry.h"
+#import "ChecklistItem.h"
 
 @implementation ChecklistItemCell
 {
@@ -20,7 +21,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setupLabel:(NSString *)keyText withValue:(NSString *)valueText {
+- (void)setupLabel:(ChecklistItem *)item {
+    NSString *keyText = item.keyText;
+    NSString *valueText = item.valueText;
     keyLabel = [[UILabel alloc] init];
     keyLabel.text = keyText;
     keyLabel.textAlignment = NSTextAlignmentLeft;

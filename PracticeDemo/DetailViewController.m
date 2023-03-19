@@ -5,10 +5,10 @@
 //  Created by mawei on 2023/3/17.
 //
 
-#import "ItemDetailViewController.h"
+#import "DetailViewController.h"
 #import "Masonry.h"
 
-@implementation ItemDetailViewController
+@implementation DetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:UITableViewCell.self forCellReuseIdentifier:@"ItemDetailViewCell"];
@@ -40,7 +40,7 @@
         }
         [self.delegate listDetailViewController:self didFinishEditingList:self.checklist];
     } else {
-        self.checklistItem = _field.text;
+        self.checklistItem.valueText = _field.text;
         [self.delegate itemDetailViewController:self didFinishEditingItem:self.checklistItem];
     }
 }
@@ -54,7 +54,7 @@
             newField.text = self.checklist.caption;
         }
     } else {
-        newField.text = self.checklistItem;
+        newField.text = self.checklistItem.valueText;
     }
     [cell addSubview:newField];
     UIEdgeInsets padding = UIEdgeInsetsMake(5, 20, 5, 20);

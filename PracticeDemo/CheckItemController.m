@@ -7,7 +7,8 @@
 
 #import "CheckItemController.h"
 #import "ChecklistItemCell.h"
-#import "ItemDetailViewController.h"
+#import "DetailViewController.h"
+#import "ChecklistItem.h"
 
 @implementation CheckItemController
 
@@ -30,17 +31,18 @@
     if (detailCell == nil) {
         detailCell = [[ChecklistItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailCellIdentifier];
     }
-    NSString *item = self.items[indexPath.row];
-    NSString *keyValue = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)indexPath.row]];
-    [detailCell setupLabel:keyValue withValue: item];
+    if ([self.items[indexPath.row] isKindOfClass:ChecklistItem.class]) {
+        ChecklistItem *item = self.items[indexPath.row];
+        [detailCell setupLabel:item];
+    }
     detailCell.accessoryType = UITableViewCellAccessoryDetailButton;
     return  detailCell;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    NSString *item = self.items[indexPath.row];
-    ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
-    nextController.checklistItem = item;
+    NSString *valueText = self.items[indexPath.row];
+    DetailViewController *nextController = [[DetailViewController alloc] init];
+    nextController.checklistItem = self.items[indexPath.row];
     nextController.title = @"Edit Item";
     nextController.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
@@ -48,11 +50,11 @@
 
 }
 
-- (void)detailViewControllerDidCancel:(ItemDetailViewController *)controller {
+- (void)detailViewControllerDidCancel:(DetailViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishEditingItem:(NSString *)checklistItem {
+- (void)itemDetailViewController:(DetailViewController *)controller didFinishEditingItem:(NSString *)checklistItem {
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

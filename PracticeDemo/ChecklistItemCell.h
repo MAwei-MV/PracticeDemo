@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChecklistItem.h"
 
 static NSString *detailCellIdentifier = @"ItemDetailCell";
 @interface ChecklistItemCell : UITableViewCell
 
-- (void)setupLabel: (NSString *) keyText withValue: (NSString *) valueText;
+- (void)setupLabel: (ChecklistItem *) item;
 
 @end
