@@ -7,8 +7,8 @@
 
 #import "CheckItemController.h"
 #import "ChecklistItemCell.h"
-#import "DetailViewController.h"
 #import "ChecklistItem.h"
+#import "ItemDetailViewController.h"
 
 @implementation CheckItemController
 
@@ -41,7 +41,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSString *valueText = self.items[indexPath.row];
-    DetailViewController *nextController = [[DetailViewController alloc] init];
+    ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
     nextController.checklistItem = self.items[indexPath.row];
     nextController.title = @"Edit Item";
     nextController.delegate = self;
@@ -50,11 +50,12 @@
 
 }
 
-- (void)detailViewControllerDidCancel:(DetailViewController *)controller {
+#pragma mark -ItemDetailViewControllerDelegate
+- (void)itemdetailViewControllerDidCancel:(ItemDetailViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)itemDetailViewController:(DetailViewController *)controller didFinishEditingItem:(NSString *)checklistItem {
+- (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishEditingItem:(ChecklistItem *)checklistItem {
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

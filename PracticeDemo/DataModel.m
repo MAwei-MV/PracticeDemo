@@ -8,6 +8,7 @@
 #import "DataModel.h"
 #import "Checklist.h"
 #import "Catalog.h"
+#import "ChecklistItem.h"
 
 @implementation DataModel
 
@@ -70,8 +71,16 @@
             subCata.name = keyName;
             list.subCategory = subCata;
         } else if ([dic[keyName] isKindOfClass:NSArray.class]) {
-                   NSMutableArray *items = dic[keyName];
-                   list.items = items;
+            NSMutableArray *valueTexts = dic[keyName];
+            int index = 0;
+            NSMutableArray *checkItems = [[NSMutableArray alloc] init];
+            for (NSString *valueText in valueTexts) {
+                ChecklistItem *item = [[ChecklistItem alloc] init];
+                item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)index]];
+                item.valueText = valueText;
+                [checkItems addObject:item];
+            }
+            list.items = checkItems;
         } else if ([dic[keyName] isKindOfClass:NSString.class]) {
                 list.caption = dic[keyName];
         } else if ([dic[keyName] isKindOfClass:NSNumber.class]){

@@ -9,7 +9,7 @@
 #import "ChecklistCell.h"
 #import "Checklist.h"
 #import "CheckItemController.h"
-#import "DetailViewController.h"
+#import "ListDetailViewController.h"
 #import "ChecklistItem.h"
 
 @interface ChecklistViewController ()
@@ -71,26 +71,17 @@
         [self.navigationController pushViewController:nextController animated:YES];
     } else if (list.items != nil) {
         CheckItemController *nextController = [[CheckItemController alloc] init];
-        NSMutableArray *valueTexts = list.items;
-        int index = 0;
-        NSMutableArray *checkItems = [[NSMutableArray alloc] init];
-        for (NSString *valueText in valueTexts) {
-            ChecklistItem *item = [[ChecklistItem alloc] init];
-            item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)index]];
-            item.valueText = valueText;
-            [checkItems addObject:item];
-        }
-        nextController.items = checkItems;
+        nextController.items = list.items;
         [self.navigationController pushViewController:nextController animated:YES];
     } else if (list.caption != nil) {
-        DetailViewController *nextController = [[DetailViewController alloc] init];
+        ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
         nextController.checklist = list;
         nextController.title = @"Edit Item";
         nextController.delegate = self;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
         [self presentViewController:nav animated:YES completion:nil];
     } else if (list.num != nil) {
-        DetailViewController *nextController = [[DetailViewController alloc] init];
+        ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
         nextController.checklist = list;
         nextController.title = @"Edit Item";
         nextController.delegate = self;
@@ -100,11 +91,12 @@
 }
 
 #pragma mark - ItemDetailViewControllerDelegate
--(void)detailViewControllerDidCancel:(DetailViewController *)controller {
+
+- (void)listdetailViewControllerDidCancel:(ListDetailViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)listDetailViewController:(DetailViewController *)controller didFinishEditingList:(NSString *)text {
+- (void)listDetailViewController:(ListDetailViewController *)controller didFinishEditingList:(Checklist *)checklist {
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

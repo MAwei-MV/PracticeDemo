@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailViewController.h"
+#import "ListDetailViewController.h"
 
 @class Checklist;
-@interface ChecklistViewController : UITableViewController <DetailViewControllerDelegate>
+@interface ChecklistViewController : UITableViewController <ListDetailViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *checklists;
 

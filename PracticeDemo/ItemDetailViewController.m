@@ -5,21 +5,22 @@
 //  Created by mawei on 2023/3/17.
 //
 
-#import "DetailViewController.h"
+#import "ItemDetailViewController.h"
 #import "Masonry.h"
+#import "ChecklistItem.h"
 
-@implementation DetailViewController
+@implementation ItemDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:UITableViewCell.self forCellReuseIdentifier:@"ItemDetailViewCell"];
-    [self setupButton];
+    [self setupNaviButton];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
 }
 
-- (void) setupButton {
+- (void) setupNaviButton {
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = right;
@@ -27,35 +28,17 @@
 }
 
 - (IBAction)cancel {
-    [self.delegate detailViewControllerDidCancel:self];
+    [self.delegate itemdetailViewControllerDidCancel:self];
 }
 
 - (IBAction)done {
-    if (_checklist != nil) {
-        if (_checklist.num != nil) {
-            NSNumber *newNum = @([_field.text intValue]);
-            self.checklist.num = newNum;
-        } else {
-            self.checklist.caption = _field.text;
-        }
-        [self.delegate listDetailViewController:self didFinishEditingList:self.checklist];
-    } else {
-        self.checklistItem.valueText = _field.text;
-        [self.delegate itemDetailViewController:self didFinishEditingItem:self.checklistItem];
-    }
+    self.checklistItem.valueText = _field.text;
+    [self.delegate itemDetailViewController:self didFinishEditingItem:self.checklistItem];
 }
 
 - (void) setupTextField: (UITableViewCell*) cell {
     UITextField *newField = [[UITextField alloc] init];
-    if (self.checklist != nil) {
-        if (self.checklist.num != nil) {
-            newField.text = self.checklist.num.description;
-        } else {
-            newField.text = self.checklist.caption;
-        }
-    } else {
-        newField.text = self.checklistItem.valueText;
-    }
+    newField.text = self.checklistItem.valueText;
     [cell addSubview:newField];
     UIEdgeInsets padding = UIEdgeInsetsMake(5, 20, 5, 20);
     [newField mas_makeConstraints:^(MASConstraintMaker *make) {
