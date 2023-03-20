@@ -10,6 +10,10 @@
 static NSString *cellIdentifier = @"ChecklistCell";
 @interface ChecklistCell : UITableViewCell
 
+@property(nonatomic, strong) UILabel *keyLabel;
+@property(nonatomic, strong) UILabel *valueLabel;
+@property(nonatomic, strong) UISwitch *valueSwitch;
+
 - (void)setupLabels: (NSString *) caption withTitle: (NSString *) titlename;
 - (void)setupSwitch: (BOOL) boolValue withTitle: (NSString *) titleName;
 

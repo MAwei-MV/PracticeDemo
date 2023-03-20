@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:ChecklistCell.self forCellReuseIdentifier:cellIdentifier];
+    //[self.tableView registerClass:ChecklistCell.self forCellReuseIdentifier:cellIdentifier];
 }
 
 #pragma mark - Table view cell style
@@ -36,9 +36,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChecklistCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ChecklistCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
     if (cell == nil) {
         cell = [[ChecklistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    } else {
+        //重用时，删掉原先的控件，否则会有重叠效果
+        cell.textLabel.text = nil;
+        [cell.keyLabel removeFromSuperview];
+        [cell.valueLabel removeFromSuperview];
+        [cell.valueSwitch removeFromSuperview];
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     Checklist *list = self.checklists[indexPath.row];
     //判断是否为二级分类
@@ -89,6 +96,14 @@
         [self presentViewController:nav animated:YES completion:nil];
     }
 }
+
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    Checklist *list = self.checklists[indexPath.row];
+//    if (list.checkItem != nil) {
+//        return nil;
+//    }
+//    return indexPath;
+//}
 
 #pragma mark - ItemDetailViewControllerDelegate
 

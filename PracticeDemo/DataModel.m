@@ -79,6 +79,7 @@
                 item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)index]];
                 item.valueText = valueText;
                 [checkItems addObject:item];
+                index += 1;
             }
             list.items = checkItems;
         } else if ([dic[keyName] isKindOfClass:NSString.class]) {

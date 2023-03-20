@@ -23,25 +23,25 @@
 }
 
 - (void) setupLabels:(NSString *)caption withTitle:(NSString *)titlename {
-    UILabel *keyLabel = [[UILabel alloc] init];
-    keyLabel.text = titlename;
-    keyLabel.textAlignment = NSTextAlignmentLeft;
+    self.keyLabel = [[UILabel alloc] init];
+    _keyLabel.text = titlename;
+    _keyLabel.textAlignment = NSTextAlignmentLeft;
     
-    UILabel *valueLabel = [[UILabel alloc] init];
-    valueLabel.text = caption;
-    valueLabel.textAlignment = NSTextAlignmentRight;
+    self.valueLabel = [[UILabel alloc] init];
+    _valueLabel.text = caption;
+    _valueLabel.textAlignment = NSTextAlignmentRight;
     
-    [self addSubview:keyLabel];
-    [self addSubview:valueLabel];
+    [self addSubview:_keyLabel];
+    [self addSubview:_valueLabel];
     
-    [keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(5);
         make.left.equalTo(self).with.offset(20);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(150);
     }];
     
-    [valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(5);
         make.right.equalTo(self).with.offset(-20);
         make.centerY.equalTo(self);
@@ -50,27 +50,35 @@
 }
 
 - (void) setupSwitch:(BOOL)boolValue withTitle:(NSString *)titleName{
-    costom = [[UISwitch alloc] init];
-    costom.on = boolValue;
+    self.valueSwitch = [[UISwitch alloc] init];
+    _valueSwitch.on = boolValue;
+    [_valueSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    self.keyLabel = [[UILabel alloc] init];
+    _keyLabel.text = titleName;
+    _keyLabel.textAlignment = NSTextAlignmentLeft;
     
-    UILabel *keyLabel = [[UILabel alloc] init];
-    keyLabel.text = titleName;
-    keyLabel.textAlignment = NSTextAlignmentLeft;
-    
-    [self addSubview:keyLabel];
-    [self addSubview:costom];
+    [self addSubview:_keyLabel];
+    [self addSubview:_valueSwitch];
 
-    [keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(5);
         make.left.equalTo(self).with.offset(20);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(150);
     }];
     
-    [costom mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_valueSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-20);
         make.centerY.equalTo(self);
     }];
+}
+
+- (void) switchAction:(UISwitch *)sender {
+    if (sender.selected == YES) {
+        NSLog(@"YES");
+    } else {
+        NSLog(@"NO");
+    }
 }
 
 @end
