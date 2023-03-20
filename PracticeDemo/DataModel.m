@@ -76,7 +76,7 @@
             NSMutableArray *checkItems = [[NSMutableArray alloc] init];
             for (NSString *valueText in valueTexts) {
                 ChecklistItem *item = [[ChecklistItem alloc] init];
-                item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%ld", (long)index]];
+                item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%d", index]];
                 item.valueText = valueText;
                 [checkItems addObject:item];
                 index += 1;

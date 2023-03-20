@@ -14,8 +14,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNaviButton];
     //[self.tableView registerClass:ChecklistItemCell.self forCellReuseIdentifier:detailCellIdentifier];
 }
+
+- (void) setupNaviButton {
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    self.navigationItem.rightBarButtonItem = right;
+}
+
+- (IBAction)addItem:(id)sender {
+    ItemDetailViewController *nextController = [[ItemDetailViewController alloc] init];
+    nextController.title = @"Add Item";
+    nextController.delegate = self;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
@@ -50,7 +66,6 @@
     nextController.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
     [self presentViewController:nav animated:YES completion:nil];
-
 }
 
 #pragma mark -ItemDetailViewControllerDelegate
@@ -59,6 +74,14 @@
 }
 
 - (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishEditingItem:(ChecklistItem *)checklistItem {
+    [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)checklistItem {
+    int count = (int)[self.items count];
+    checklistItem.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%d", count]];
+    [self.items addObject:checklistItem];
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

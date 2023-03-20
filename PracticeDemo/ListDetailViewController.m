@@ -32,7 +32,7 @@
 
 - (IBAction)done {
     if (self.checklist.num != nil) {
-        NSNumber *newNum = @([_field.text intValue]);
+        NSNumber *newNum = @([_field.text doubleValue]);
         self.checklist.num = newNum;
     } else if (self.checklist.caption != nil) {
         self.checklist.caption = _field.text;
@@ -43,6 +43,7 @@
 - (void) setupTextField: (UITableViewCell*) cell {
     UITextField *newField = [[UITextField alloc] init];
     if (self.checklist.num != nil) {
+        newField.keyboardType = UIKeyboardTypeDecimalPad;
         newField.text = self.checklist.num.description;
     } else if (self.checklist.caption != nil) {
         newField.text = self.checklist.caption;

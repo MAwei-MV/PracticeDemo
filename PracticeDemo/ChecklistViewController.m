@@ -58,9 +58,10 @@
     } else if (list.caption != nil) {
             [cell setupLabels:list.caption withTitle:list.titleName];
     } else if (list.num != nil) {
-            NSNumberFormatter *tempNum = [[NSNumberFormatter alloc] init];
-            NSString *resStr = [tempNum stringFromNumber:list.num];
-            [cell setupLabels:resStr withTitle:list.titleName];
+            //NSNumberFormatter *tempNum = [[NSNumberFormatter alloc] init];
+        NSString *resStr = [NSString stringWithFormat:@"%20@",list.num];
+            //NSString *resStr = [tempNum stringWit:list.num];
+        [cell setupLabels:resStr withTitle:list.titleName];
     } else if (list.items != nil) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = list.titleName;
@@ -92,6 +93,7 @@
         nextController.checklist = list;
         nextController.title = @"Edit Item";
         nextController.delegate = self;
+        nextController.field.keyboardType = UIKeyboardTypeDecimalPad;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
         [self presentViewController:nav animated:YES completion:nil];
     }

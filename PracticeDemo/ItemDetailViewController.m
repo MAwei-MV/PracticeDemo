@@ -32,13 +32,21 @@
 }
 
 - (IBAction)done {
-    self.checklistItem.valueText = _field.text;
-    [self.delegate itemDetailViewController:self didFinishEditingItem:self.checklistItem];
+    if (!self.checklistItem) {
+        ChecklistItem *item = [[ChecklistItem alloc] init];
+        item.valueText = _field.text;
+        [self.delegate itemDetailViewController:self didFinishAddingItem:item];
+    } else {
+        self.checklistItem.valueText = _field.text;
+        [self.delegate itemDetailViewController:self didFinishEditingItem:self.checklistItem];
+    }
 }
 
 - (void) setupTextField: (UITableViewCell*) cell {
     UITextField *newField = [[UITextField alloc] init];
-    newField.text = self.checklistItem.valueText;
+    if (!self.checklistItem) {
+        newField.text = self.checklistItem.valueText;
+    }
     [cell addSubview:newField];
     UIEdgeInsets padding = UIEdgeInsetsMake(5, 20, 5, 20);
     [newField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,6 +54,8 @@
     }];
     self.field = newField;
     [self.field becomeFirstResponder];
+//  self.field.keyboardType = UIKeyboardTypeDecimalPad;
+//  [self.field reloadInputViews];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
