@@ -62,6 +62,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     Checklist *list = self.checklists[indexPath.row];
+    cell.checklist = list;
     //判断是否为二级分类
     if (list.subCategory != nil) {
         Catalog *subCata = list.subCategory;
@@ -125,13 +126,19 @@
     }
 }
 
-//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    Checklist *list = self.checklists[indexPath.row];
-//    if (list.checkItem != nil) {
-//        return nil;
-//    }
-//    return indexPath;
-//}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.checklists removeObjectAtIndex:indexPath.row];
+    NSArray *indexPaths = @[indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Checklist *list = self.checklists[indexPath.row];
+    if (list.checkItem != nil) {
+        return nil;
+    }
+    return indexPath;
+}
 
 #pragma mark - ItemDetailViewControllerDelegate
 
@@ -151,5 +158,6 @@
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

@@ -52,13 +52,13 @@
 - (void) setupSwitch:(BOOL)boolValue withTitle:(NSString *)titleName{
     self.valueSwitch = [[UISwitch alloc] init];
     _valueSwitch.on = boolValue;
-    [_valueSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    [_valueSwitch addTarget:self action:@selector(switchAction: ) forControlEvents:UIControlEventValueChanged];
     self.keyLabel = [[UILabel alloc] init];
     _keyLabel.text = titleName;
     _keyLabel.textAlignment = NSTextAlignmentLeft;
     
     [self addSubview:_keyLabel];
-    [self addSubview:_valueSwitch];
+    [self.contentView addSubview:_valueSwitch];
 
     [_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(5);
@@ -74,10 +74,10 @@
 }
 
 - (void) switchAction:(UISwitch *)sender {
-    if (sender.selected == YES) {
-        NSLog(@"YES");
+    if (sender.on == YES) {
+        self.checklist.checkItem = @1;
     } else {
-        NSLog(@"NO");
+        self.checklist.checkItem = @0;
     }
 }
 

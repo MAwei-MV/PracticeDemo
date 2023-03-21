@@ -59,6 +59,9 @@
         self.checklist.num = newNum;
     } else if (self.checklist.caption != nil) {
         self.checklist.caption = _field.text;
+    } else if (self.checklist.date != nil) {
+        NSDate *date = self.datePicker.date;
+        self.checklist.date = date;
     }
     [self.delegate listDetailViewController:self didFinishEditingList:self.checklist];
 }
