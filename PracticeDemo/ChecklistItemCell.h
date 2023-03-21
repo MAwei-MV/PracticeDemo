@@ -14,6 +14,6 @@ static NSString *detailCellIdentifier = @"ItemDetailCell";
 @property (nonatomic, strong) UILabel *keyLabel;
 @property (nonatomic, strong) UILabel *valueLabel;
 
-- (void)setupLabel: (ChecklistItem *) item;
+- (void)setupLabel: (ChecklistItem *) item indexFor:(int) index;
 
 @end

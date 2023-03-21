@@ -93,14 +93,11 @@
             list.subCategory = subCata;
         } else if ([dic[keyName] isKindOfClass:NSArray.class]) {
             NSMutableArray *valueTexts = dic[keyName];
-            int index = 0;
             NSMutableArray *checkItems = [[NSMutableArray alloc] init];
             for (NSString *valueText in valueTexts) {
                 ChecklistItem *item = [[ChecklistItem alloc] init];
-                item.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%d", index]];
                 item.valueText = valueText;
                 [checkItems addObject:item];
-                index += 1;
             }
             list.items = checkItems;
         } else if ([dic[keyName] isKindOfClass:NSString.class]) {

@@ -9,7 +9,6 @@
 
 @interface ChecklistItem : NSObject <NSCoding>
 
-@property(nonatomic,copy)NSString *keyText;
 @property(nonatomic,copy)NSString *valueText;
 
 @end

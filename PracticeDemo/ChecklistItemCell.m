@@ -17,11 +17,10 @@
     // Configure the view for the selected state
 }
 
-- (void)setupLabel:(ChecklistItem *)item {
-    NSString *keyText = item.keyText;
+- (void)setupLabel:(ChecklistItem *)item indexFor:(int) index {
     NSString *valueText = item.valueText;
     _keyLabel = [[UILabel alloc] init];
-    _keyLabel.text = keyText;
+    _keyLabel.text = [@"Item " stringByAppendingString: @(index).stringValue];
     _keyLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:_keyLabel];
     [_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {

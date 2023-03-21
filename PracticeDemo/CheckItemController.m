@@ -53,7 +53,7 @@
     }
     if ([self.items[indexPath.row] isKindOfClass:ChecklistItem.class]) {
         ChecklistItem *item = self.items[indexPath.row];
-        [detailCell setupLabel:item];
+        [detailCell setupLabel:item indexFor:(int)indexPath.row];
     }
     detailCell.accessoryType = UITableViewCellAccessoryDetailButton;
     return  detailCell;
@@ -68,6 +68,13 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.items removeObjectAtIndex:indexPath.row];
+    NSArray *indexPaths = @[indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadData];
+}
+
 #pragma mark -ItemDetailViewControllerDelegate
 - (void)itemdetailViewControllerDidCancel:(ItemDetailViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -79,8 +86,6 @@
 }
 
 - (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)checklistItem {
-    int count = (int)[self.items count];
-    checklistItem.keyText = [@"Item " stringByAppendingString: [NSString stringWithFormat:@"%d", count]];
     [self.items addObject:checklistItem];
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
