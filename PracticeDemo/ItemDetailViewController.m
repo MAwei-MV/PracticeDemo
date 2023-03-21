@@ -43,7 +43,7 @@
 
 - (void) setupTextField: (UITableViewCell*) cell {
     UITextField *newField = [[UITextField alloc] init];
-    if (!self.checklistItem) {
+    if (self.checklistItem != nil) {
         newField.text = self.checklistItem.valueText;
     }
     [cell addSubview:newField];
