@@ -10,12 +10,14 @@
 @implementation Catalog
 
 - (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
-    
+    [aCoder encodeObject:self.name forKey:@"CatalistName"];
+    [aCoder encodeObject:self.catalist forKey:@"Catalist"];
+
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)aDecoder {
     if ((self = [super init])) {
-        self.name = [aDecoder decodeObjectForKey:@"Name"];
+        self.name = [aDecoder decodeObjectForKey:@"CatalistName"];
         self.catalist = [aDecoder decodeObjectForKey:@"Catalist"];
     }
     return self;

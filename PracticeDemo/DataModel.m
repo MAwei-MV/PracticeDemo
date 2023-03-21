@@ -31,31 +31,52 @@
     return [[self documentsDirectory] stringByAppendingPathComponent:@"PropertyList.plist"];
 }
 
-//封
-- (void)saveChecklists {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [archiver encodeObject:self.lists forKey:@"Checklists"];
-    [archiver finishEncoding];
-    [data writeToFile:[self dataFilePath] atomically:YES];
+- (NSString *)documentsDirectory2 {
+    return @"/Users/tingyu/Documents";
+}
 
+- (NSString *)dataFilePath2 {
+    return [[self documentsDirectory2] stringByAppendingPathComponent:@"PropertyList.plist"];
+}
+//存
+- (void)saveChecklists {
+    //利用NSMutableDictionary直接存不可取，因为存在自定义的对象类
+    //NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+//    for (Catalog *catalog in self.lists) {
+//        NSString *keyName = catalog.name;
+//        [dictionary setValue:catalog forKey:keyName];
+//    }
+//    NSData *dictionaryData = [NSPropertyListSerialization dataWithPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 options:1 error:nil];
+//    [dictionary writeToFile:[self dataFilePath2] atomically:YES];
+    
+    //通过序列化实现
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:self.lists forKey:@"Catalogs"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath2] atomically:YES];
 }
 
 //取
 //序列化方案
 - (void)loadAllData {
-    self.lists = [[NSMutableArray alloc] initWithCapacity:20];
-    NSString *path = [self dataFilePath];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath2]]) {
+        NSString *path = [self dataFilePath2];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        self.lists = [unarchiver decodeObjectForKey:@"Catalogs"];
+        [unarchiver finishDecoding];
+    } else {
+        self.lists = [[NSMutableArray alloc] initWithCapacity:20];
+        NSString *path = [self dataFilePath];
         self.lists = [[NSMutableArray alloc] init];
         NSDictionary *catalogs = [NSDictionary dictionaryWithContentsOfFile:path];
         for (NSString *keyName in catalogs) {
-            Catalog *catalog = [self recuLoadData:catalogs[keyName]];
+        Catalog *catalog = [self recuLoadData:catalogs[keyName]];
             catalog.name = keyName;
             [self.lists addObject:catalog];
         }
-    } else {
-        self.lists = [[NSMutableArray alloc] initWithCapacity:20];
     }
 }
 //递归加载

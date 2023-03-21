@@ -7,12 +7,16 @@
 
 #import "AppDelegate.h"
 #import "HomepageViewController.h"
+#import "DataModel.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+{
+    HomepageViewController *rootViewController;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -21,8 +25,19 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
     vc.view.backgroundColor = [UIColor whiteColor];
+    rootViewController = vc;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    DataModel *nowDataModel = [rootViewController dataModel];
+    [nowDataModel saveChecklists];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    DataModel *nowDataModel = [rootViewController dataModel];
+    [nowDataModel saveChecklists];
 }
 
 @end

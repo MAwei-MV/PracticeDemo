@@ -27,6 +27,7 @@
 		8CBBDBD429C43B59008FDCB1 /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBD329C43B59008FDCB1 /* ListDetailViewController.m */; };
 		8CBBDBD729C46D33008FDCB1 /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBD629C46D33008FDCB1 /* ChecklistItem.m */; };
 		8CBBDBDA29C71C76008FDCB1 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBD929C71C76008FDCB1 /* ItemDetailViewController.m */; };
+		8CBBDBDD29C83C7B008FDCB1 /* ChecklistOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBDBDC29C83C7B008FDCB1 /* ChecklistOptionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		8CBBDBD629C46D33008FDCB1 /* ChecklistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
 		8CBBDBD829C71C76008FDCB1 /* ItemDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		8CBBDBD929C71C76008FDCB1 /* ItemDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		8CBBDBDB29C83C7B008FDCB1 /* ChecklistOptionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistOptionViewController.h; sourceTree = "<group>"; };
+		8CBBDBDC29C83C7B008FDCB1 /* ChecklistOptionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistOptionViewController.m; sourceTree = "<group>"; };
 		B28CB7B7D343707C4F3F88A0 /* Pods-PracticeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeDemo.release.xcconfig"; path = "Target Support Files/Pods-PracticeDemo/Pods-PracticeDemo.release.xcconfig"; sourceTree = "<group>"; };
 		D045FEFF2DAEC7982277BE24 /* Pods-PracticeDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeDemo.debug.xcconfig"; path = "Target Support Files/Pods-PracticeDemo/Pods-PracticeDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +170,8 @@
 				8CBBDBD629C46D33008FDCB1 /* ChecklistItem.m */,
 				8CBBDBD829C71C76008FDCB1 /* ItemDetailViewController.h */,
 				8CBBDBD929C71C76008FDCB1 /* ItemDetailViewController.m */,
+				8CBBDBDB29C83C7B008FDCB1 /* ChecklistOptionViewController.h */,
+				8CBBDBDC29C83C7B008FDCB1 /* ChecklistOptionViewController.m */,
 			);
 			path = PracticeDemo;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				8C77593529C2F6E600366C1F /* Catalog.m in Sources */,
 				8C7A0BE829C1A35D004E00CB /* AppDelegate.m in Sources */,
 				8C7A0BF929C1A35E004E00CB /* main.m in Sources */,
+				8CBBDBDD29C83C7B008FDCB1 /* ChecklistOptionViewController.m in Sources */,
 				8C77592F29C1B61B00366C1F /* ChecklistCell.m in Sources */,
 				8C7A0C2329C1A3A1004E00CB /* Checklist.m in Sources */,
 				8CBBDBDA29C71C76008FDCB1 /* ItemDetailViewController.m in Sources */,

@@ -7,6 +7,7 @@
 
 #import "ListDetailViewController.h"
 #import "Masonry.h"
+#import "Catalog.h"
 
 @implementation ListDetailViewController
 - (void)viewDidLoad {
@@ -27,10 +28,33 @@
 }
 
 - (IBAction)cancel {
-    [self.delegate listdetailViewControllerDidCancel:self];
+    [self.delegate listDetailViewControllerDidCancel:self];
 }
 
 - (IBAction)done {
+    if (!self.checklist) {
+        Checklist *newChecklist = [[Checklist alloc] init];
+        if (self.addType == 0) {
+            newChecklist.titleName = @"String";
+            newChecklist.caption = _field.text;
+        } else if (self.addType == 1) {
+            newChecklist.titleName = @"Number";
+            newChecklist.num = @([_field.text doubleValue]);
+        } else if (self.addType == 2) {
+            //待补充
+        } else if (self.addType == 3) {
+            NSMutableArray *newArray = [[NSMutableArray alloc] init];
+            newChecklist.items = newArray;
+            newChecklist.titleName = _field.text;
+        } else if (self.addType == 4) {
+            Catalog *newCatalog = [[Catalog alloc] init];
+            NSMutableArray *newArray = [[NSMutableArray alloc] init];
+            newCatalog.name = _field.text;
+            newCatalog.catalist = newArray;
+            newChecklist.subCategory = newCatalog;
+        }
+        [self.delegate listDetailViewController:self didFinishAddingList:newChecklist];
+    }
     if (self.checklist.num != nil) {
         NSNumber *newNum = @([_field.text doubleValue]);
         self.checklist.num = newNum;
@@ -42,11 +66,13 @@
 
 - (void) setupTextField: (UITableViewCell*) cell {
     UITextField *newField = [[UITextField alloc] init];
-    if (self.checklist.num != nil) {
+    if (self.checklist !=nil && self.checklist.num != nil) {
         newField.keyboardType = UIKeyboardTypeDecimalPad;
         newField.text = self.checklist.num.description;
-    } else if (self.checklist.caption != nil) {
+    } else if (self.checklist != nil && self.checklist.caption != nil) {
         newField.text = self.checklist.caption;
+    } else if (self.addType == 1) {
+        newField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     [cell addSubview:newField];
     UIEdgeInsets padding = UIEdgeInsetsMake(5, 20, 5, 20);

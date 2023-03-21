@@ -11,24 +11,25 @@
 
 //encode
 - (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
-    [aCoder encodeObject:self.titleName forKey:@"titleName"];
-    [aCoder encodeObject:self.caption forKey:@"String"];
+    [aCoder encodeObject:self.titleName forKey:@"TitleName"];
+    [aCoder encodeObject:self.subCategory forKey:@"SubCategory"];
+    [aCoder encodeObject:self.caption forKey:@"Caption"];
     [aCoder encodeObject:self.checkItem forKey:@"CheckItem"];
-    [aCoder encodeObject:self.num forKey:@"Number"];
-    [aCoder encodeObject:self.items forKey:@"Default List"];
+    [aCoder encodeObject:self.num forKey:@"Num"];
+    [aCoder encodeObject:self.items forKey:@"CheckLists"];
     
 }
 //decode
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)aDecoder {
     if ((self = [super init])) {
-        self.titleName = [aDecoder decodeObjectForKey:@"titleName"];
-        self.caption = [aDecoder decodeObjectForKey: @"String"];
+        self.titleName = [aDecoder decodeObjectForKey:@"TitleName"];
+        self.subCategory = [aDecoder decodeObjectForKey:@"SubCategory"];
+        self.caption = [aDecoder decodeObjectForKey: @"Caption"];
         self.checkItem = [aDecoder decodeObjectForKey: @"CheckItem"];
-        self.num = [aDecoder decodeObjectForKey: @"Number"];
-        self.items = [aDecoder decodeObjectForKey: @"Default List"];
+        self.num = [aDecoder decodeObjectForKey: @"Num"];
+        self.items = [aDecoder decodeObjectForKey: @"CheckLists"];
     }
     return self;
-
 }
 
 @end

@@ -12,7 +12,6 @@
 @implementation ItemDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:UITableViewCell.self forCellReuseIdentifier:@"ItemDetailViewCell"];
     [self setupNaviButton];
 }
 
@@ -64,7 +63,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"ItemDetailViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }

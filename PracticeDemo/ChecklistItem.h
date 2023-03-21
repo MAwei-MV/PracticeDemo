@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ChecklistItem : NSObject
+@interface ChecklistItem : NSObject <NSCoding>
 
 @property(nonatomic,copy)NSString *keyText;
 @property(nonatomic,copy)NSString *valueText;

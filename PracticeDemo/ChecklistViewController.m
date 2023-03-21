@@ -11,6 +11,7 @@
 #import "CheckItemController.h"
 #import "ListDetailViewController.h"
 #import "ChecklistItem.h"
+#import "ChecklistOptionViewController.h"
 
 @interface ChecklistViewController ()
 
@@ -20,7 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNaviButton];
     //[self.tableView registerClass:ChecklistCell.self forCellReuseIdentifier:cellIdentifier];
+}
+
+- (void) setupNaviButton {
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addChecklist:)];
+    self.navigationItem.rightBarButtonItem = right;
+}
+
+- (IBAction)addChecklist: (id)sender{
+    ChecklistOptionViewController *nextController = [[ChecklistOptionViewController alloc] init];
+    nextController.title = @"Add Checklist";
+    nextController.checklistViewController = self;
+    [self.navigationController pushViewController:nextController animated:YES];
 }
 
 #pragma mark - Table view cell style
@@ -84,14 +98,14 @@
     } else if (list.caption != nil) {
         ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
         nextController.checklist = list;
-        nextController.title = @"Edit Item";
+        nextController.title = @"Edit Checklist";
         nextController.delegate = self;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
         [self presentViewController:nav animated:YES completion:nil];
     } else if (list.num != nil) {
         ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
         nextController.checklist = list;
-        nextController.title = @"Edit Item";
+        nextController.title = @"Edit Checklist";
         nextController.delegate = self;
         nextController.field.keyboardType = UIKeyboardTypeDecimalPad;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
@@ -109,12 +123,20 @@
 
 #pragma mark - ItemDetailViewControllerDelegate
 
-- (void)listdetailViewControllerDidCancel:(ListDetailViewController *)controller {
+- (void)listDetailViewControllerDidCancel:(ListDetailViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)listDetailViewController:(ListDetailViewController *)controller didFinishEditingList:(Checklist *)checklist {
     [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)listDetailViewController:(ListDetailViewController *)controller didFinishAddingList:(Checklist *)checklist {
+    [self.checklists addObject:checklist];
+    [self.tableView reloadData];
+    //先在.navigationController中退出ChecklistOptionViewController页面，然后再退出ListDetailViewController.
+    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
