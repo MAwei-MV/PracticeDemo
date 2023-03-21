@@ -66,8 +66,10 @@
     //判断是否为二级分类
     if (list.subCategory != nil) {
         Catalog *subCata = list.subCategory;
+        cell = [[ChecklistCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = subCata.name;
+        cell.detailTextLabel.text = ([@(subCata.catalist.count).stringValue stringByAppendingString:@"项"]);
     } else if (list.checkItem != nil) {
         [cell setupSwitch:([list.checkItem  isEqual: @1]) withTitle:list.titleName];
     } else if (list.caption != nil) {
@@ -96,6 +98,7 @@
         Catalog *subCata = list.subCategory;
         ChecklistViewController *nextController = [[ChecklistViewController alloc] init];
         nextController.checklists = subCata.catalist;
+        nextController.delegate = self;
         [self.navigationController pushViewController:nextController animated:YES];
     } else if (list.items != nil) {
         CheckItemController *nextController = [[CheckItemController alloc] init];
@@ -130,6 +133,7 @@
     [self.checklists removeObjectAtIndex:indexPath.row];
     NSArray *indexPaths = @[indexPath];
     [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.delegate updateChecklistCounts];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -157,7 +161,12 @@
     //先在.navigationController中退出ChecklistOptionViewController页面，然后再退出ListDetailViewController.
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate updateChecklistCounts];
 }
 
+#pragma mark ChecklistViewController
+- (void)updateChecklistCounts {
+    [self.tableView reloadData];
+}
 
 @end

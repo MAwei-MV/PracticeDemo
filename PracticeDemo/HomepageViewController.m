@@ -51,7 +51,13 @@
     NSUInteger row = [indexPath row];
     ChecklistViewController *nextController = [[ChecklistViewController alloc] init];
     nextController.checklists = [self.dataModel.lists[row] catalist];
+    nextController.delegate = self;
     [self.navigationController pushViewController:nextController animated:YES];
+}
+
+#pragma mark ChecklistViewController
+- (void)updateChecklistCounts {
+    [self.tableView reloadData];
 }
 
 @end

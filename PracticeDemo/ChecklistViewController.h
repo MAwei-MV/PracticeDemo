@@ -8,9 +8,16 @@
 #import <UIKit/UIKit.h>
 #import "ListDetailViewController.h"
 
+@protocol ChecklistViewControllerDelegate <NSObject>
+
+- (void) updateChecklistCounts;
+
+@end
+
 @class Checklist;
-@interface ChecklistViewController : UITableViewController <ListDetailViewControllerDelegate>
+@interface ChecklistViewController : UITableViewController <ListDetailViewControllerDelegate, ChecklistViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *checklists;
+@property (nonatomic, weak) id<ChecklistViewControllerDelegate> delegate;
 
 @end
