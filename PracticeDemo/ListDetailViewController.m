@@ -16,10 +16,6 @@
     [self setupNaviButton];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
-
 - (void) setupNaviButton {
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
@@ -41,7 +37,10 @@
             newChecklist.titleName = @"Number";
             newChecklist.num = @([_field.text doubleValue]);
         } else if (self.addType == 2) {
-            //待补充
+            NSDate *date = self.datePicker.date;
+            NSLog(@"%@",[date descriptionWithLocale:[NSLocale currentLocale]]);
+            newChecklist.titleName = @"Date";
+            newChecklist.date = date;
         } else if (self.addType == 3) {
             NSMutableArray *newArray = [[NSMutableArray alloc] init];
             newChecklist.items = newArray;
@@ -83,6 +82,24 @@
     [self.field becomeFirstResponder];
 }
 
+- (void) setupDatePicker: (UITableViewCell*) cell {
+    UIDatePicker *picker = [[UIDatePicker alloc] init];
+    [cell addSubview:picker];
+    UIEdgeInsets padding = UIEdgeInsetsMake(5, 20, 5, 20);
+    [picker mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(cell).with.insets(padding);
+    }];
+    if(self.checklist != nil && self.checklist.date != nil) {
+        picker.date = self.checklist.date;
+    }
+    self.datePicker = picker;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
@@ -93,7 +110,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    [self setupTextField:cell];
+    if (self.addType == 2 || self.checklist.date != nil) {
+        [self setupDatePicker:cell];
+    } else {
+        [self setupTextField:cell];
+    }
     return cell;
 }
 

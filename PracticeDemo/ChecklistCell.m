@@ -45,7 +45,7 @@
         make.top.equalTo(self).offset(5);
         make.right.equalTo(self).with.offset(-20);
         make.centerY.equalTo(self);
-        make.width.mas_equalTo(150);
+        make.width.mas_equalTo(200);
     }];
 }
 

@@ -17,6 +17,7 @@
     [aCoder encodeObject:self.checkItem forKey:@"CheckItem"];
     [aCoder encodeObject:self.num forKey:@"Num"];
     [aCoder encodeObject:self.items forKey:@"CheckLists"];
+    [aCoder encodeObject:self.date forKey:@"Date"];
     
 }
 //decode
@@ -28,6 +29,7 @@
         self.checkItem = [aDecoder decodeObjectForKey: @"CheckItem"];
         self.num = [aDecoder decodeObjectForKey: @"Num"];
         self.items = [aDecoder decodeObjectForKey: @"CheckLists"];
+        self.date = [aDecoder decodeObjectForKey:@"Date"];
     }
     return self;
 }

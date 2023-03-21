@@ -24,6 +24,7 @@
 @property (nonatomic) int addType;
 @property (nonatomic, strong) UITextField *field;
 @property (nonatomic, weak) id<ListDetailViewControllerDelegate> delegate;
+@property (nonatomic, strong) UIDatePicker *datePicker;
 
 @end
 

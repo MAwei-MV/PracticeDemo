@@ -68,17 +68,22 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = subCata.name;
     } else if (list.checkItem != nil) {
-            [cell setupSwitch:([list.checkItem  isEqual: @1]) withTitle:list.titleName];
+        [cell setupSwitch:([list.checkItem  isEqual: @1]) withTitle:list.titleName];
     } else if (list.caption != nil) {
-            [cell setupLabels:list.caption withTitle:list.titleName];
+        [cell setupLabels:list.caption withTitle:list.titleName];
     } else if (list.num != nil) {
-            //NSNumberFormatter *tempNum = [[NSNumberFormatter alloc] init];
+        //NSNumberFormatter *tempNum = [[NSNumberFormatter alloc] init];
         NSString *resStr = [NSString stringWithFormat:@"%20@",list.num];
-            //NSString *resStr = [tempNum stringWit:list.num];
+        //NSString *resStr = [tempNum stringWit:list.num];
         [cell setupLabels:resStr withTitle:list.titleName];
     } else if (list.items != nil) {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = list.titleName;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = list.titleName;
+    } else if (list.date != nil) {
+        NSDateFormatter* df = [[NSDateFormatter alloc] init];
+        df.dateFormat = @"YYYY-MM-dd HH:mm:ss";
+        NSString *dateValue = [df stringFromDate:list.date];
+        [cell setupLabels:dateValue withTitle:list.titleName];
     }
     return cell;
 }
@@ -98,16 +103,23 @@
     } else if (list.caption != nil) {
         ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
         nextController.checklist = list;
-        nextController.title = @"Edit Checklist";
+        nextController.title = @"Edit String";
         nextController.delegate = self;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
         [self presentViewController:nav animated:YES completion:nil];
     } else if (list.num != nil) {
         ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
         nextController.checklist = list;
-        nextController.title = @"Edit Checklist";
+        nextController.title = @"Edit Number";
         nextController.delegate = self;
         nextController.field.keyboardType = UIKeyboardTypeDecimalPad;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
+        [self presentViewController:nav animated:YES completion:nil];
+    } else if (list.date != nil) {
+        ListDetailViewController *nextController = [[ListDetailViewController alloc] init];
+        nextController.checklist = list;
+        nextController.title = @"Edit Date";
+        nextController.delegate = self;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
         [self presentViewController:nav animated:YES completion:nil];
     }

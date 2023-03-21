@@ -16,6 +16,7 @@
 @property (nonatomic, nullable)NSNumber *checkItem;
 @property (nonatomic, nullable)NSMutableArray *items;
 @property (nonatomic, nullable)NSNumber *num;
+@property (nonatomic, nullable)NSDate *date;
 
 
 @end
