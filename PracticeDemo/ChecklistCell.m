@@ -8,6 +8,7 @@
 #import "ChecklistCell.h"
 #import "Checklist.h"
 #import "Masonry.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @implementation ChecklistCell
 {
@@ -26,11 +27,12 @@
     self.keyLabel = [[UILabel alloc] init];
     _keyLabel.text = titlename;
     _keyLabel.textAlignment = NSTextAlignmentLeft;
+    _keyLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     
     self.valueLabel = [[UILabel alloc] init];
     _valueLabel.text = caption;
     _valueLabel.textAlignment = NSTextAlignmentRight;
-    
+    _valueLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     [self addSubview:_keyLabel];
     [self addSubview:_valueLabel];
     
@@ -56,6 +58,7 @@
     self.keyLabel = [[UILabel alloc] init];
     _keyLabel.text = titleName;
     _keyLabel.textAlignment = NSTextAlignmentLeft;
+    _keyLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     
     [self addSubview:_keyLabel];
     [self.contentView addSubview:_valueSwitch];

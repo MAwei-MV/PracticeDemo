@@ -24,7 +24,7 @@
     HomepageViewController *vc = [HomepageViewController new];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
-    vc.view.backgroundColor = [UIColor whiteColor];
+    //vc.view.backgroundColor = [UIColor whiteColor];
     rootViewController = vc;
     [self.window makeKeyAndVisible];
     return YES;

@@ -8,6 +8,7 @@
 #import "ChecklistItemCell.h"
 #import "Masonry.h"
 #import "ChecklistItem.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @implementation ChecklistItemCell
 
@@ -21,6 +22,7 @@
     _keyLabel = [[UILabel alloc] init];
     _keyLabel.text = [@"Item " stringByAppendingString: @(index).stringValue];
     _keyLabel.textAlignment = NSTextAlignmentLeft;
+    _keyLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     [self addSubview:_keyLabel];
     [_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(5);
@@ -32,6 +34,7 @@
     _valueLabel = [[UILabel alloc] init];
     _valueLabel.text = valueText;
     _valueLabel.textAlignment = NSTextAlignmentRight;
+    _valueLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     [self addSubview:_valueLabel];
     [_valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(5);
@@ -47,6 +50,7 @@
     UIEdgeInsets padding = UIEdgeInsetsMake(0, 5, 0, 5);
     button.backgroundColor = UIColor.grayColor;
     [button setTitle:@"撤销" forState:UIControlStateNormal];
+    button.titleLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {

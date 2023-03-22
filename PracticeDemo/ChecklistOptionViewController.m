@@ -7,6 +7,8 @@
 
 #import "ChecklistOptionViewController.h"
 #import "ListDetailViewController.h"
+#import "Masonry.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @interface ChecklistOptionViewController ()
 
@@ -15,6 +17,7 @@
 @implementation ChecklistOptionViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
 }
 
 - (id)init {
@@ -48,8 +51,10 @@
     if (!optionCell) {
         optionCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:optionIdentifier];
     }
+    optionCell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     int index = (int)indexPath.row;
     optionCell.textLabel.text = _checklistOptions[index];
+    optionCell.textLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     optionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return optionCell;
 }

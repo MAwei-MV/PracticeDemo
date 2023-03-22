@@ -10,6 +10,7 @@
 #import "ChecklistItem.h"
 #import "ItemDetailViewController.h"
 #import "Masonry.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @implementation CheckItemController
 {
@@ -21,6 +22,7 @@
     [super viewDidLoad];
     [self setupNaviButton];
     undoManager = [[NSUndoManager alloc] init];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     //[self.tableView registerClass:ChecklistItemCell.self forCellReuseIdentifier:detailCellIdentifier];
 }
 
@@ -61,6 +63,7 @@
     }
     //最后一行添加Undo/Redo功能
     detailCell.delegate = self;
+    detailCell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     if (indexPath.row == self.items.count) {
         [detailCell setupUndoLabel];
         return detailCell;

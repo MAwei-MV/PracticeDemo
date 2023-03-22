@@ -8,11 +8,13 @@
 #import "ItemDetailViewController.h"
 #import "Masonry.h"
 #import "ChecklistItem.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @implementation ItemDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNaviButton];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,6 +54,7 @@
         make.edges.equalTo(cell).with.insets(padding);
     }];
     self.field = newField;
+    newField.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     [self.field becomeFirstResponder];
 //  self.field.keyboardType = UIKeyboardTypeDecimalPad;
 //  [self.field reloadInputViews];
@@ -67,6 +70,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    cell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     [self setupTextField:cell];
     return cell;
 }

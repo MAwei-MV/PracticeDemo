@@ -9,6 +9,7 @@
 #import "Checklist.h"
 #import "Catalog.h"
 #import "ChecklistItem.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @implementation DataModel
 
@@ -16,6 +17,8 @@
     if ((self = [super init])) {
         [self loadAllData];
         [self registerDefaults];
+        self.manager = [DKNightVersionManager sharedManager];
+        self.manager.themeVersion = DKThemeVersionNormal;
     }
     return self;
 }

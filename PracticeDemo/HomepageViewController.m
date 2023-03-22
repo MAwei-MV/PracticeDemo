@@ -15,15 +15,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"First Level";
+    self.title = @"HomePage";
     DataModel *dataSource = [[DataModel alloc] init];
     self.dataModel = dataSource;
     [self.dataModel sortCatalog];
+    [self setupNightModeBar];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
 }
 
-#pragma mark
-#pragma mark Table Data Source Methods
+- (void) setupNightModeBar {
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 32)];
+    [rightButton setTitle:@"night" forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    rightButton.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    [rightButton addTarget:self action:@selector(switchNight:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+}
 
+-(IBAction)switchNight:(id)sender {
+    if(self.dataModel.manager.themeVersion == DKThemeVersionNight) {
+        self.dataModel.manager.themeVersion = DKThemeVersionNormal;
+    } else {
+        self.dataModel.manager.themeVersion = DKThemeVersionNight;
+    }
+}
+
+
+#pragma mark Table Data Source Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.dataModel.lists count];
 }
@@ -34,9 +53,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:FirstLevelCell];
     }
+    cell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     Catalog *catalog = self.dataModel.lists[indexPath.row];
     cell.textLabel.text = catalog.name;
+    cell.textLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     cell.detailTextLabel.text = ([@(catalog.catalist.count).stringValue stringByAppendingString:@"项"]);
+    cell.detailTextLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //    //configure the cell
 //    NSUInteger row = [indexPath row];

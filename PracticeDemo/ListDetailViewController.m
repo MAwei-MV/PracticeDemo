@@ -8,12 +8,14 @@
 #import "ListDetailViewController.h"
 #import "Masonry.h"
 #import "Catalog.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @implementation ListDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:UITableViewCell.self forCellReuseIdentifier:@"ListDetailViewCell"];
     [self setupNaviButton];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
 }
 
 - (void) setupNaviButton {
@@ -81,6 +83,7 @@
     [newField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(cell).with.insets(padding);
     }];
+    newField.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     self.field = newField;
     [self.field becomeFirstResponder];
 }
@@ -113,6 +116,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    cell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     if (self.addType == 2 || self.checklist.date != nil) {
         [self setupDatePicker:cell];
     } else {

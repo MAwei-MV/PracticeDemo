@@ -12,6 +12,7 @@
 #import "ListDetailViewController.h"
 #import "ChecklistItem.h"
 #import "ChecklistOptionViewController.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @interface ChecklistViewController ()
 
@@ -22,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNaviButton];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     //[self.tableView registerClass:ChecklistCell.self forCellReuseIdentifier:cellIdentifier];
 }
 
@@ -63,6 +65,7 @@
     }
     Checklist *list = self.checklists[indexPath.row];
     cell.checklist = list;
+    cell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     //判断是否为二级分类
     if (list.subCategory != nil) {
         Catalog *subCata = list.subCategory;
@@ -70,6 +73,9 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = subCata.name;
         cell.detailTextLabel.text = ([@(subCata.catalist.count).stringValue stringByAppendingString:@"项"]);
+        cell.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+        cell.textLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
+        cell.detailTextLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     } else if (list.checkItem != nil) {
         [cell setupSwitch:([list.checkItem  isEqual: @1]) withTitle:list.titleName];
     } else if (list.caption != nil) {
@@ -82,6 +88,7 @@
     } else if (list.items != nil) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = list.titleName;
+        cell.textLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     } else if (list.date != nil) {
         NSDateFormatter* df = [[NSDateFormatter alloc] init];
         df.dateFormat = @"YYYY-MM-dd HH:mm:ss";
