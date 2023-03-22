@@ -9,12 +9,18 @@
 #import "ChecklistItemCell.h"
 #import "ChecklistItem.h"
 #import "ItemDetailViewController.h"
+#import "Masonry.h"
 
 @implementation CheckItemController
+{
+    //利用NSUndoManager实现撤销操作
+    NSUndoManager *undoManager;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNaviButton];
+    undoManager = [[NSUndoManager alloc] init];
     //[self.tableView registerClass:ChecklistItemCell.self forCellReuseIdentifier:detailCellIdentifier];
 }
 
@@ -38,7 +44,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.items count];
+    return [self.items count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -48,8 +54,16 @@
         detailCell = [[ChecklistItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detailCellIdentifier];
     } else {
         //重用时，删掉原来的控件
+        detailCell.accessoryType = UITableViewCellAccessoryNone;
         [detailCell.keyLabel removeFromSuperview];
         [detailCell.valueLabel removeFromSuperview];
+        [detailCell.undoButton removeFromSuperview];
+    }
+    //最后一行添加Undo/Redo功能
+    detailCell.delegate = self;
+    if (indexPath.row == self.items.count) {
+        [detailCell setupUndoLabel];
+        return detailCell;
     }
     if ([self.items[indexPath.row] isKindOfClass:ChecklistItem.class]) {
         ChecklistItem *item = self.items[indexPath.row];
@@ -69,9 +83,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.items removeObjectAtIndex:indexPath.row];
-    NSArray *indexPaths = @[indexPath];
-    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (indexPath.row == (int)self.items.count) return;
+    ChecklistItem *item = self.items[indexPath.row];
+    [self deleteItem:item indexFor: (int)indexPath.row];
     [self.tableView reloadData];
 }
 
@@ -86,9 +100,29 @@
 }
 
 - (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)checklistItem {
-    [self.items addObject:checklistItem];
+    [self addNewItem:checklistItem indexFor:(int)self.items.count];
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addNewItem: (ChecklistItem *)checklistItem indexFor: (int) index {
+    //[undoManager registerUndoWithTarget:self selector:@selector(deleteItem:) indexFor:index  object:checklistItem];
+    [[undoManager prepareWithInvocationTarget:self] deleteItem:checklistItem indexFor:index];
+    [self.items insertObject:checklistItem atIndex:index];
+}
+
+- (void)deleteItem: (ChecklistItem *)checklistItem indexFor: (int) index {
+    [[undoManager prepareWithInvocationTarget:self] addNewItem:checklistItem indexFor:index];
+    [self.items removeObject:checklistItem];
+
+}
+
+#pragma mark UndoOperationDelegate
+- (void)undoOperation {
+    if ([undoManager canUndo]) {
+        [undoManager undo];
+        [self.tableView reloadData];
+    }
 }
 
 @end

@@ -7,8 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemDetailViewController.h"
+#import "ChecklistItemCell.h"
 
-@interface CheckItemController : UITableViewController <ItemDetailViewControllerDelegate>
+@interface CheckItemController : UITableViewController <ItemDetailViewControllerDelegate, UndoOperationDelegate>
 
 @property (strong, nonatomic) NSMutableArray *items;
 

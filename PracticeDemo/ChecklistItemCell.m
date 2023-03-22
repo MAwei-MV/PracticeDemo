@@ -13,7 +13,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
@@ -41,6 +40,24 @@
         make.width.mas_equalTo(150);
     }];
 
+}
+
+- (void)setupUndoLabel {
+    UIButton *button = [[UIButton alloc] init];
+    UIEdgeInsets padding = UIEdgeInsetsMake(0, 5, 0, 5);
+    button.backgroundColor = UIColor.grayColor;
+    [button setTitle:@"撤销" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self).insets(padding);
+    }];
+    self.undoButton = button;
+}
+
+- (IBAction)clickButton:(id)sender {
+    //触发撤销事件
+    [self.delegate undoOperation];
 }
 
 @end
