@@ -122,7 +122,7 @@
 
 #pragma mark UndoOperationDelegate
 - (void)undoOperation {
-    if ([undoManager canUndo]) {
+    if ([self.undoManager canUndo]) {
         [undoManager undo];
         [self.tableView reloadData];
     }
