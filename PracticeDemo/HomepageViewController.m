@@ -63,6 +63,7 @@
     cell.detailTextLabel.text = ([@(catalog.catalist.count).stringValue stringByAppendingString:@"项"]);
     cell.detailTextLabel.dk_textColorPicker = DKColorPickerWithKey(TEXT);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSLog(@"develop branch commmit 1");
 //    //configure the cell
 //    NSUInteger row = [indexPath row];
 //    TestViewController *controller = [_controllers objectAtIndex:row];
