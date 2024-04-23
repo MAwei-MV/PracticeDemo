@@ -41,6 +41,7 @@
     } else {
         self.dataModel.manager.themeVersion = DKThemeVersionNight;
     }
+    NSLog(@"feature branch commit 3");
 }
 
 
