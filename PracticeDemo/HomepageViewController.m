@@ -21,6 +21,7 @@
     [self.dataModel sortCatalog];
     [self setupNightModeBar];
     self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    NSLog(@"feature branch commit 1");
 }
 
 - (void) setupNightModeBar {
@@ -31,6 +32,7 @@
     [rightButton addTarget:self action:@selector(switchNight:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
+    NSLog(@"feature branch commit 2");
 }
 
 -(IBAction)switchNight:(id)sender {
@@ -39,6 +41,7 @@
     } else {
         self.dataModel.manager.themeVersion = DKThemeVersionNight;
     }
+    NSLog(@"feature branch commit 3");
 }
 
 
