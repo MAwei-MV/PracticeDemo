@@ -4,5 +4,5 @@
 target 'PracticeDemo' do
 	pod 'Masonry'
 	pod "DKNightVersion"
-
+  pod "AFNetworking", "~> 2.0"
 end
