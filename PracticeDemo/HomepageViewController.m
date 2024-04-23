@@ -21,6 +21,7 @@
     [self.dataModel sortCatalog];
     [self setupNightModeBar];
     self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    NSLog(@"feature branch commit 1");
 }
 
 - (void) setupNightModeBar {
