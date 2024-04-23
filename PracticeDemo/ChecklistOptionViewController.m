@@ -66,5 +66,6 @@
     nextController.delegate = _checklistViewController;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:nextController];
     [self presentViewController:nav animated:YES completion:nil];
+    NSLog(@"Develop testLog");
 }
 @end
