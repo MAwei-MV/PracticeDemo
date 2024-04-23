@@ -32,6 +32,7 @@
     [rightButton addTarget:self action:@selector(switchNight:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
+    NSLog(@"feature branch commit 2");
 }
 
 -(IBAction)switchNight:(id)sender {
